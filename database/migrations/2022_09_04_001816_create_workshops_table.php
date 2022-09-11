@@ -14,6 +14,7 @@ class CreateWorkshopsTable extends Migration
             $table->text('description');
             $table->text('image');
             $table->date('date');
+            $table->integer('total_visited')->unsigned();
             $table->integer('total_audience')->unsigned();
             $table->foreignId('link_id')->constrained();
             $table->timestamps();
