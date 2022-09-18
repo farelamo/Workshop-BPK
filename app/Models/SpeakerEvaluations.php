@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class SpeakerEvaluations extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['comfortable', 'event_suggestion', 'user_id', 'workshop_id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function workshop()
+    {
+        return $this->hasOne(Workshop::class);
+    }
 }
