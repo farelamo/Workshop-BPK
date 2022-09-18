@@ -12,11 +12,12 @@ class CreateWorkshopsTable extends Migration
             $table->id();
             $table->string('title', 200);
             $table->text('description');
+            $table->text('destination');
             $table->text('image');
+            $table->text('document');
             $table->date('date');
-            $table->integer('total_visited')->unsigned();
-            $table->integer('total_audience')->unsigned();
             $table->foreignId('link_id')->constrained();
+            $table->foreignId('topic_id')->constrained();
             $table->timestamps();
         });
     }

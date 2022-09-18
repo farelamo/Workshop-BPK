@@ -11,12 +11,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
+            $table->string('NIP')->unique();
             $table->string('email')->unique();
+            $table->text('unit');
             $table->text('password');
-            $table->string('age');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->enum('role', ['audience', 'speaker']);
             $table->timestamps();
         });
     }
