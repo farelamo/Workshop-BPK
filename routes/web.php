@@ -13,5 +13,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/anjay', function(){
         return view('home');
     });
+
+    
+    
+    // Topic
+    // Route::get('topic', 'Workshop\TopicController@index');
+    // Route::post('topic', 'Workshop\TopicController@store');
+    // Route::update('topic/{id}', 'Workshop\TopicController@update');
+    // Route::delete('topic/{id}', 'Workshop\TopicController@destroy');
+
+    // Link
+    // Route::get('link', 'Workshop\LinkController@index');
+    // Route::post('link', 'Workshop\LinkController@store');
+    // Route::update('link/{id}', 'Workshop\LinkController@update');
+    // Route::delete('link/{id}', 'Workshop\LinkController@destroy');
+
+    // Logout
     Route::get('/logout', 'Auth\AuthController@logout');
 });

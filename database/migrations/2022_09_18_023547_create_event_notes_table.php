@@ -13,8 +13,6 @@ class CreateEventNotesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('workshop_id')->constrained();
             $table->enum('role', ['speaker', 'audience']);
-            $table->integer('total_visited')->unsigned();
-            $table->integer('total_audience')->unsigned();
             $table->timestamps();
         });
     }

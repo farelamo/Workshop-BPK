@@ -12,7 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['fullname','NIP'];
+    protected $fillable = ['fullname','NIP', 'email', 'unit'];
     protected $hidden   = ['password','remember_token',];
     protected $casts    = ['email_verified_at' => 'datetime'];
+
+    public function event_notes(){
+        return $this->hasMany(Event_Note::class);
+    }
 }
