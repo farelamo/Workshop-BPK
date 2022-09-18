@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration
             $table->string('NIP')->unique();
             $table->string('email')->nullable();
             $table->text('unit')->nullable();
-            $table->text('password')->nullable();
             $table->timestamps();
         });
     }
