@@ -12,9 +12,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('NIP')->unique();
-            $table->string('email')->unique();
-            $table->text('unit');
-            $table->text('password');
+            $table->string('email')->nullable();
+            $table->text('unit')->nullable();
+            $table->text('password')->nullable();
             $table->timestamps();
         });
     }
