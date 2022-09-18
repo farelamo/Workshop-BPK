@@ -8,22 +8,22 @@ use App\Services\Auth\AuthService;
 
 class AuthController extends Controller
 {
-    public function __construct(AuthService $repository){
-        $this->repository = $repository;
+    public function __construct(AuthService $service){
+        $this->service = $service;
     }
 
     public function loginIndex()
     {
-        return $this->repository->loginIndex();
+        return $this->service->loginIndex();
     }
 
     public function login(Request $request)
     {
-        return $this->repository->login($request);
+        return $this->service->login($request);
     }
 
     public function logout()
     {
-        return $this->repository->logout();
+        return $this->service->logout();
     }
 }
