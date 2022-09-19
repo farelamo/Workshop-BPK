@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Link;
 
 use App\Http\Controllers\Controller;
 
-use App\Service\Workshop\LinkService;
+use App\Services\Workshop\LinkService;
 use App\Http\Requests\Workshop\LinkRequest;
 
 

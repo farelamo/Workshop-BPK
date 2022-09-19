@@ -1,0 +1,1 @@
+INI BROO =====> {{ $workshop->total_visited }}

@@ -10,7 +10,8 @@ class WorkshopService
 {
     public function index()
     {
-        return view('workshop.index');
+        // return view('workshop.index');]
+        return view('yuhu');
     }
 
     public function store(WorkshopRequest $request)
@@ -24,11 +25,24 @@ class WorkshopService
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $workshop = Workshop::find($id);
+            $workshop->total_visited += 1;
+            $workshop->update(['total_visited' => $workshop->total_visited]);
+            return view('anjay', compact('workshop'));
+        } catch(Exception $e){
+            Alert::error('Maaf', 'terjadi kesalahan');
+            return redirect()->back();
+        }
+    }
+
     public function update($id, WorkshopRequest $request)
     {
         try {
-            $data = Workshop::find($id);
-            $data->update($request->all());
+            $workshop = Workshop::find($id);
+            $workshop->update($request->all());
             Alert::success('Success', 'Workshop berhasil diupdate');
         } catch(Exception $e){
             Alert::error('Maaf', 'terjadi kesalahan');

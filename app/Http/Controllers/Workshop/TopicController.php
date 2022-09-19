@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Workshop;
 
 use App\Http\Controllers\Controller;
 
-use App\Service\Workshop\TopicService;
+use App\Services\Workshop\TopicService;
 use App\Http\Requests\Workshop\TopicRequest;
 
 class TopicController extends Controller

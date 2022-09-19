@@ -14,8 +14,9 @@ Route::middleware('auth')->group(function () {
         return view('home');
     });
 
-    
-    
+    Route::get('workshop', 'Workshop\WorkshopController@index');
+    Route::get('workshop/{id}', 'Workshop\WorkshopController@show');
+
     // Topic
     // Route::get('topic', 'Workshop\TopicController@index');
     // Route::post('topic', 'Workshop\TopicController@store');
