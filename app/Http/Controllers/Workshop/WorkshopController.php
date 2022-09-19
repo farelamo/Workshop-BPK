@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Workshop;
 
 use App\Http\Controllers\Controller;
-use App\Service\Workshop\WorkshopService;
+use App\Services\Workshop\WorkshopService;
 use App\Http\Requests\Workshop\WorkshopRequest;
 
 class WorkshopController extends Controller
@@ -16,6 +16,11 @@ class WorkshopController extends Controller
     public function index()
     {
         return $this->service->index();
+    }
+
+    public function show($id)
+    {
+        return $this->service->show($id);
     }
 
     public function store(WorkshopRequest $request)

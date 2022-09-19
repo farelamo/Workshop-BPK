@@ -18,8 +18,8 @@ class CreateWorkshopsTable extends Migration
             $table->date('date');
             $table->foreignId('link_id')->constrained();
             $table->foreignId('topic_id')->constrained();
-            $table->integer('total_visited')->unsigned();
-            $table->integer('total_audience')->unsigned();
+            $table->integer('total_visited')->unsigned()->nullable();
+            $table->integer('total_audience')->unsigned()->nullable();
             $table->timestamps();
         });
     }
