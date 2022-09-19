@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Workshop;
 use App\Http\Controllers\Controller;
 use App\Services\Workshop\WorkshopService;
 use App\Http\Requests\Workshop\WorkshopRequest;
+use Log;
 
 class WorkshopController extends Controller
 {
@@ -25,16 +26,11 @@ class WorkshopController extends Controller
 
     public function store(WorkshopRequest $request)
     {
-        return $this->service->store($id, $request);
+        return $this->service->store($request);
     }
 
     public function update($id, WorkshopRequest $request)
     {
         return $this->service->update($id, $request);
-    }
-
-    public function destroy($id)
-    {
-        return $this->service->delete($id);
     }
 }

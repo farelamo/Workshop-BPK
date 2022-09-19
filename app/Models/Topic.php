@@ -10,4 +10,9 @@ class Topic extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function workshops()
+    {
+        return $this->hasMany(Workshop::class);
+    }
 }

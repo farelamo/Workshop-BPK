@@ -10,4 +10,9 @@ class Link extends Model
     use HasFactory;
 
     protected $fillable = ['link'];
+
+    public function workshops()
+    {
+        return $this->hasMany(Workshop::class);
+    }
 }
