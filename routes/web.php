@@ -14,12 +14,8 @@ Route::middleware('auth')->group(function () {
         return view('home');
     });
 
-    Route::get('/create', function(){
-        return view('Workshops.create');
-    });
-
-
     Route::get('workshop', 'Workshop\WorkshopController@index');
+    Route::get('create', 'Workshop\WorkshopController@create');
     Route::post('workshop', 'Workshop\WorkshopController@store');
     Route::get('workshop/{id}', 'Workshop\WorkshopController@show');
 
