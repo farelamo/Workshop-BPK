@@ -19,6 +19,11 @@ class WorkshopController extends Controller
         return $this->service->index();
     }
 
+    public function create()
+    {
+        return $this->service->create();
+    }
+
     public function show($id)
     {
         return $this->service->show($id);
