@@ -14,7 +14,6 @@ class User extends Authenticatable
 
     protected $fillable = ['fullname','NIP', 'email', 'unit'];
     protected $hidden   = ['NIP'];
-    protected $casts    = ['email_verified_at' => 'datetime'];
 
     public function audience_evaluations(){
         return $this->hasMany(AudienceEvaluations::class);

@@ -8,10 +8,10 @@
 </head>
 <body>
     @include('sweetalert::alert')
-    <h1>ANJAYYY</h1>
+    <h1>Login</h1>
     <form action="/login" method="post">
         @csrf
-
+        
         <input type="text" name="NIP">
         <input type="text" name="fullname">
         <button type="submit">Send</button>
