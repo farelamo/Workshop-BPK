@@ -33,6 +33,6 @@ class Workshop extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, 'event_notes');
+        return $this->belongsToMany(User::class, 'event_notes')->withPivot('role', 'user_id');
     }
 }

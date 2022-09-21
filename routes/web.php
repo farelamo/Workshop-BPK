@@ -14,10 +14,17 @@ Route::middleware('auth')->group(function () {
         return view('home');
     });
 
+    //Profile
+    Route::get('profile', 'Profile\ProfileController@index');
+    Route::put('profile', 'Profile\ProfileController@update');
+
+    //Workshop
     Route::get('workshop', 'Workshop\WorkshopController@index');
     Route::get('create', 'Workshop\WorkshopController@create');
     Route::post('workshop', 'Workshop\WorkshopController@store');
     Route::get('workshop/{id}', 'Workshop\WorkshopController@show');
+    Route::put('workshop/{id}', 'Workshop\WorkshopController@update');
+    Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
 
     // Topic
     // Route::get('topic', 'Workshop\TopicController@index');

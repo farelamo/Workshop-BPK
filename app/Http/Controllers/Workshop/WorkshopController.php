@@ -38,4 +38,9 @@ class WorkshopController extends Controller
     {
         return $this->service->update($id, $request);
     }
+
+    public function join($id)
+    {
+        return $this->service->join($id);
+    }
 }
