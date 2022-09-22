@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function(){
     return view('welcome');
@@ -8,6 +10,25 @@ Route::get('/', function(){
 
 Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::post('/login', 'Auth\AuthController@login');
+
+Route::get('/v2/login/', function () {
+    return Socialite::driver('keycloak')->redirect();
+});
+
+Route::get('/sso/callback', function (Request $request) {
+    $response = Socialite::driver('keycloak')->user();
+    $data = $response->getRaw()['info'];
+
+    $user = User::updateOrCreate([
+        'name'  => $data['name'],
+        'NIP'   => $data['nip'],
+        'email' => $data['email'],
+    ]);
+ 
+    Auth::login($user);
+ 
+    return redirect('/');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/anjay', function(){
@@ -40,4 +61,10 @@ Route::middleware('auth')->group(function () {
 
     // Logout
     Route::get('/logout', 'Auth\AuthController@logout');
+
+    // Logout V2
+    Route::get('v2/logout', function(){
+        Auth::logout();
+        return redirect(Socialite::driver('keycloak')->getLogoutUrl('/'));
+    });
 });
