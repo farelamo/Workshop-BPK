@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::put('workshop/{id}', 'Workshop\WorkshopController@update');
     Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
 
+    Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
+    Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
+
     // Topic
     // Route::get('topic', 'Workshop\TopicController@index');
     // Route::post('topic', 'Workshop\TopicController@store');
