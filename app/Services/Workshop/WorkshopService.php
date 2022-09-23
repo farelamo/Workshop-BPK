@@ -27,6 +27,14 @@ class WorkshopService
         ];
     }
 
+    public function calculate_visited($workshop, $increment){
+        DB::Transaction(function() use(&$workshop, $increment){
+            $workshop->update([
+                'total_visited' => $increment ? $workshop->total_visited + 1 : $workshop->total_visited - 1
+            ]);
+        });
+    }
+
     public function index()
     {
         return view('yuhu');
@@ -40,6 +48,7 @@ class WorkshopService
 
     public function store(WorkshopRequest $request)
     {
+
         $checkDate = $this->dateBooked();
 
         $dateBooked = Workshop::where('date', '>', $checkDate['date_start'])
@@ -73,7 +82,7 @@ class WorkshopService
             $workshop->users()->attach(Auth::user()->id, ['role' => 'speaker']);
 
             Alert::success('Success', 'Workshop berhasil dibuat');
-            return redirect('/workshop');
+            return redirect('/workshop/' . $workshop->id);
         } catch (Exception $e) {
             return $this->error('Terjadi Kesalahan');
         }
@@ -85,14 +94,10 @@ class WorkshopService
 
             $workshop = Workshop::findOrFail($id);
 
-            DB::beginTransaction();
-                $workshop->total_visited += 1;
-                $workshop->update(['total_visited' => $workshop->total_visited]);
-            DB::commit();
-
+            $this->calculate_visited($workshop, true);
+            
             return view('Workshops.anjay', compact('workshop'));
         } catch (Exception $e) {
-            DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
     }
@@ -128,23 +133,22 @@ class WorkshopService
 
     public function join($id){
         try {
-            if(empty(Auth::user()->email) || empty(Auth::user()->unit)){
-                return $this->error('Lengkapi email dan unit di profile terlebih dahulu');
-            }
+            // if(empty(Auth::user()->email) || empty(Auth::user()->unit)){
+            //     return $this->error('Lengkapi email dan unit di profile terlebih dahulu');
+            // }
 
             $workshop = Workshop::findOrFail($id);
-
-            foreach($workshop->users as $user){
-                if($user->pivot->user_id == Auth::user()->id){
-                    if($user->pivot->role === 'speaker'){
-                        return $this->error('Speaker tidak bisa menjadi audience');
-                    }
+            $check = $workshop->users()->where('user_id', Auth::user()->id)->first();
+            dd($check);
+            if(!empty($check)){
+                if($check->role === 'audience'){
+                    $this->calculate_visited($workshop, false);
+                    return $this->error('Anda sudah mengikuti workshop ini');
                 }
 
-                if($user->pivot->user_id == Auth::user()->id){
-                    if($user->pivot->role === 'audience'){
-                        return $this->error('Anda sudah mengikuti workshop ini');
-                    }
+                if($check->role === 'speaker'){
+                    $this->calculate_visited($workshop, false);
+                    return $this->error('Speaker tidak bisa menjadi audience');
                 }
             }
 

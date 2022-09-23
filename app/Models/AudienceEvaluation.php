@@ -18,17 +18,4 @@ class AudienceEvaluation extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function workshop()
-    {
-        return $this->belongsTo('App\Models\Workshop');
-    }
-
-    public function anjay()
-    {
-        return [
-            'yuhuu',
-            
-        ];
-    }
 }
