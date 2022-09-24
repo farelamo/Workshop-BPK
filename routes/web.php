@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function(){
@@ -12,22 +13,27 @@ Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::post('/login', 'Auth\AuthController@login');
 
 Route::get('/v2/login/', function () {
-    return Socialite::driver('keycloak')->redirect();
+    return Socialite::driver('keycloak')->stateless()->redirect();
 });
 
-Route::get('/sso/callback', function (Request $request) {
+Route::get('/auth-callback', function (Request $request) {
     $response = Socialite::driver('keycloak')->user();
     $data = $response->getRaw()['info'];
 
     $user = User::updateOrCreate([
-        'name'  => $data['name'],
-        'NIP'   => $data['nip'],
-        'email' => $data['email'],
+        'fullname'  => $data['name'],
+        'NIP'       => $data['nip'],
+        'email'     => $data['email'],
     ]);
  
     Auth::login($user);
  
     return redirect('/');
+});
+
+// Logout V2
+Route::get('v2/logout', function(){
+    return redirect(Socialite::driver('keycloak')->getLogoutUrl('logged-out'));
 });
 
 Route::middleware('auth')->group(function () {
@@ -78,10 +84,4 @@ Route::middleware('auth')->group(function () {
 
     /*** Logout ***/ 
     Route::get('/logout', 'Auth\AuthController@logout');
-
-    // Logout V2
-    Route::get('v2/logout', function(){
-        Auth::logout();
-        return redirect(Socialite::driver('keycloak')->getLogoutUrl('/'));
-    });
 });
