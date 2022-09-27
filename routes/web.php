@@ -13,13 +13,18 @@ Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::post('/login', 'Auth\AuthController@login');
 
 Route::get('/v2/login/', function () {
-    return Socialite::driver('keycloak')->stateless()->redirect();
+    return Socialite::driver('keycloak')->redirect();
 });
 
-Route::get('/auth-callback', function (Request $request) {
-    $response = Socialite::driver('keycloak')->user();
-    $data = $response->getRaw()['info'];
+Route::get('/auth-callback', function () {
+    try {
+        $response = Socialite::driver('keycloak')->stateless()->user();
 
+    }catch (Exception $e){
+        dd($e->getMessage());
+    }
+    $data = $response;
+    dd($data);
     $user = User::updateOrCreate([
         'fullname'  => $data['name'],
         'NIP'       => $data['nip'],
@@ -28,7 +33,7 @@ Route::get('/auth-callback', function (Request $request) {
  
     Auth::login($user);
  
-    return redirect('/');
+    return redirect('/hahaha');
 });
 
 // Logout V2
