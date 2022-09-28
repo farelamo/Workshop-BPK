@@ -13,15 +13,14 @@ Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::post('/login', 'Auth\AuthController@login');
 
 Route::get('/v2/login/', function () {
-    return Socialite::driver('keycloak')->redirect();
+    return Socialite::driver('keycloak')->scopes(['profile'])->redirect();
 });
 
 Route::get('/auth-callback', function () {
     try {
         $response = Socialite::driver('keycloak')->stateless()->user();
-
     }catch (Exception $e){
-        dd($e->getMessage());
+        return redirect('/login');
     }
     $data = $response;
     dd($data);
