@@ -16,7 +16,9 @@ class User extends Authenticatable
     protected $hidden   = ['NIP'];
 
     public function audience_evaluations(){
-        return $this->hasMany(AudienceEvaluations::class);
+        //parameter(Nama table yang direlasi 2, nama table pivot, nama table relasi 1, nama table relasi 2)
+        return $this->belongsToMany(Workshop::class, 'audience_evaluations', 'user_id', 'workshop_id')
+                    ->withPivot('received', 'speaker_suggestion', 'event_suggestion', 'note', 'workshop_id');
     }
 
     public function speaker_evaluations(){

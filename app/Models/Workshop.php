@@ -15,7 +15,9 @@ class Workshop extends Model
     ];
 
     public function audience_evaluations(){
-        return $this->hasMany(AudienceEvaluations::class);
+        //parameter(Nama table yang direlasi 2, nama table pivot, nama table relasi 1, nama table relasi 2)
+        return $this->belongsToMany(User::class, 'audience_evaluations', 'workshop_id', 'user_id')
+                    ->withPivot('received', 'speaker_suggestion', 'event_suggestion', 'note', 'user_id');
     }
 
     public function speaker_evaluations(){
@@ -33,6 +35,6 @@ class Workshop extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class, 'event_notes')->withPivot('role', 'user_id');
+        return $this->belongsToMany(User::class, 'event_notes')->withPivot('role', 'user_id')->withTimestamps();
     }
 }

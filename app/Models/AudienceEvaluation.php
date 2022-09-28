@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AudienceEvaluations extends Model
+class AudienceEvaluation extends Model
 {
     use HasFactory;
 
@@ -16,11 +16,6 @@ class AudienceEvaluations extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
-    }
-
-    public function workshop()
-    {
-        return $this->hasOne(Workshop::class);
+        return $this->belongsTo(User::class);
     }
 }

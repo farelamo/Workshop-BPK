@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function(){
@@ -12,17 +13,17 @@ Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::post('/login', 'Auth\AuthController@login');
 
 Route::get('/v2/login/', function () {
-    return Socialite::driver('keycloak')->redirect();
+    return Socialite::driver('keycloak')->stateless()->redirect();
 });
 
-Route::get('/sso/callback', function (Request $request) {
+Route::get('/auth-callback', function (Request $request) {
     $response = Socialite::driver('keycloak')->user();
     $data = $response->getRaw()['info'];
 
     $user = User::updateOrCreate([
-        'name'  => $data['name'],
-        'NIP'   => $data['nip'],
-        'email' => $data['email'],
+        'fullname'  => $data['name'],
+        'NIP'       => $data['nip'],
+        'email'     => $data['email'],
     ]);
  
     Auth::login($user);
@@ -30,12 +31,17 @@ Route::get('/sso/callback', function (Request $request) {
     return redirect('/');
 });
 
+// Logout V2
+Route::get('v2/logout', function(){
+    return redirect(Socialite::driver('keycloak')->getLogoutUrl('logged-out'));
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/anjay', function(){
         return view('home');
     });
 
-    //Profile
+    /*** Profile ***/ 
     Route::get('profile', 'Profile\ProfileController@index');
     Route::put('profile', 'Profile\ProfileController@update');
 
@@ -47,24 +53,35 @@ Route::middleware('auth')->group(function () {
     Route::put('workshop/{id}', 'Workshop\WorkshopController@update');
     Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
 
+    Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
+    Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
+
     // Topic
     // Route::get('topic', 'Workshop\TopicController@index');
     // Route::post('topic', 'Workshop\TopicController@store');
     // Route::update('topic/{id}', 'Workshop\TopicController@update');
     // Route::delete('topic/{id}', 'Workshop\TopicController@destroy');
 
-    // Link
+    /*** Link ***/ 
     // Route::get('link', 'Workshop\LinkController@index');
     // Route::post('link', 'Workshop\LinkController@store');
     // Route::update('link/{id}', 'Workshop\LinkController@update');
     // Route::delete('link/{id}', 'Workshop\LinkController@destroy');
 
-    // Logout
-    Route::get('/logout', 'Auth\AuthController@logout');
+    Route::prefix('workshop')->group(function () {
 
-    // Logout V2
-    Route::get('v2/logout', function(){
-        Auth::logout();
-        return redirect(Socialite::driver('keycloak')->getLogoutUrl('/'));
+        /*** Workshop ***/ 
+        Route::get('/', 'Workshop\WorkshopController@index');
+        Route::get('/create', 'Workshop\WorkshopController@create');
+        Route::post('/', 'Workshop\WorkshopController@store');
+        Route::get('{id}', 'Workshop\WorkshopController@show');
+        Route::put('{id}', 'Workshop\WorkshopController@update');
+        Route::put('{id}/join', 'Workshop\WorkshopController@join');
+
+        /*** Audience Evaluation ***/
+        Route::get('/{id}/audience', 'Workshop\Evaluation\AudienceEvaluationController@show');
     });
+
+    /*** Logout ***/ 
+    Route::get('/logout', 'Auth\AuthController@logout');
 });
