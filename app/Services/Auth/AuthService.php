@@ -6,36 +6,35 @@ use Alert;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthService
 {
 
     public function loginIndex()
     {
-        return view('Auth.login');
+        return Socialite::driver('keycloak')->scopes(['profile'])->redirect();
     }
 
-    public function login(Request $request)
+    public function login()
     {
-        //send request + get return from SSO Auth
-
-        // check response SSO Auth in database
-        $user = User::where('NIP', '=', $request->NIP)->first();
-
         try {
-            if (!$user) {
-                $user = User::create([
-                    'NIP'       => $request->NIP,
-                    'fullname'  => $request->fullname,
-                ]);
-            }
 
-            if($user->NIP === $request->NIP && $user->fullname === $request->fullname){
-                Auth::login($user);
-                Alert::success('Selamat datang ' . Auth::user()->fullname);
-                return redirect('/');
-            }
+            $response = Socialite::driver('keycloak')->stateless()->user();
+            $data = $response->getRaw()['info'];
+            $user = User::updateOrCreate([
+                'fullname'  => $data['NamaLengkap'],
+                'NIP'       => $data['NIP'],
+                'new_NIP'   => $data['NIPBaru'],
+                'email'     => $data['Email'],
+                'unit'      => $data['NamaUnitKerja'],
+            ]);
+
+            Auth::login($user);
+
+            return redirect('/anjay');
         } catch(Exception $e) {
+
             Alert::error('Maaf', 'terjadi kesalahan');
             return redirect('/');
         }
@@ -44,6 +43,7 @@ class AuthService
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        Alert::success('success', 'Anda berhasil logout');
+        return redirect(Socialite::driver('keycloak')->getLogoutUrl(url('/')));
     }
 }
