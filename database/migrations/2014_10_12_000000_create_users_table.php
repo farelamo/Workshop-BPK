@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('NIP')->unique();
+            $table->string('new_NIP')->unique();
             $table->string('email')->unique();
             $table->text('unit');
             $table->timestamps();

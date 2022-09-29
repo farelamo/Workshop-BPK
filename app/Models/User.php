@@ -12,8 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['fullname','NIP', 'email', 'unit'];
-    protected $hidden   = ['NIP'];
+    protected $fillable = ['fullname','NIP', 'new_NIP', 'email', 'unit'];
+    protected $hidden   = ['NIP', 'new_NIP', 'email', 'unit'];
 
     public function audience_evaluations(){
         //parameter(Nama table yang direlasi 2, nama table pivot, nama table relasi 1, nama table relasi 2)
