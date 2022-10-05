@@ -12,6 +12,7 @@ class WorkshopController extends Controller
     public function __construct(WorkshopService $service)
     {
         $this->service = $service;
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index()

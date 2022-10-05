@@ -10,33 +10,18 @@ Route::get('/', function(){
 Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::get('/auth-callback', 'Auth\AuthController@login');
 
-Route::get('/workshop', 'Workshop\WorkshopController@index');
-Route::get('/workshop/{id}', 'Workshop\WorkshopController@show');
+Route::resource('/workshop', 'Workshop\WorkshopController');
+Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
+    
+/*** Speaker Evaluation ***/
+Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
+
+/*** Audience Evaluation ***/
+Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/anjay', function(){
         return view('home');
-    });
-
-    /*** Profile ***/ 
-    Route::get('profile', 'Profile\ProfileController@index');
-    Route::put('profile', 'Profile\ProfileController@update');
-
-    Route::prefix('workshop')->group(function () {
-
-        /*** Workshop ***/
-        Route::get('/', 'Workshop\WorkshopController@index');
-        Route::get('/create', 'Workshop\WorkshopController@create');
-        Route::post('/', 'Workshop\WorkshopController@store');
-        Route::get('/{id}', 'Workshop\WorkshopController@show');
-        Route::put('/{id}', 'Workshop\WorkshopController@update');
-        Route::put('/{id}/join', 'Workshop\WorkshopController@join');
-
-        /*** Speaker Evaluation ***/
-        Route::get('/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
-        
-        /*** Audience Evaluation ***/
-        Route::get('/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
     });
 
     /*** Topic ***/
