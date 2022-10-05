@@ -10,6 +10,7 @@ use App\Http\Requests\Workshop\WorkshopRequest;
 
 class WorkshopService
 {
+
     public function error($kalimat){
         Alert::error('Maaf', $kalimat);
         return redirect()->back()->withInput();
@@ -19,7 +20,7 @@ class WorkshopService
     {
         $dateNow    = strtotime(date("Y-m-d"));
         $dateStart  = date('Y-m-d', strtotime("+7 day", $dateNow));
-        $dateEnd    = date('Y-m-d', strtotime("+14 day", $dateNow));
+        $dateEnd    = date('Y-m-d', strtotime("+21 day", $dateNow));
 
         return [
             'date_start' => $dateStart,
@@ -76,6 +77,7 @@ class WorkshopService
                 'date' => $request->date,
                 'image' => $image,
                 'document' => $document,
+                'cancelled' => 'no',
                 'link_id' => $request->link_id,
                 'topic_id' => $request->topic_id,
             ]);
@@ -115,12 +117,12 @@ class WorkshopService
             $document = $documentFile->getClientOriginalName();
 
             $workshop = Workshop::update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'destination' => $request->destination,
-                'image' => $image,
-                'document' => $document,
-                'topic_id' => $request->topic_id,
+                'title'         => $request->title,
+                'description'   => $request->description,
+                'destination'   => $request->destination,
+                'image'         => $image,
+                'document'      => $document,
+                'topic_id'      => $request->topic_id,
             ]);
 
             Alert::success('Success', 'Workshop berhasil diupdate');
@@ -133,20 +135,22 @@ class WorkshopService
 
     public function join($id){
         try {
-            // if(empty(Auth::user()->email) || empty(Auth::user()->unit)){
-            //     return $this->error('Lengkapi email dan unit di profile terlebih dahulu');
-            // }
 
             $workshop = Workshop::findOrFail($id);
+
+            if($workshop->total_audience == 80){
+                return $this->error('Kuota Sudah Penuh');
+            }
+
             $check = $workshop->users()->where('user_id', Auth::user()->id)->first();
-            dd($check);
+
             if(!empty($check)){
-                if($check->role === 'audience'){
+                if($check->pivot->role === 'audience'){
                     $this->calculate_visited($workshop, false);
                     return $this->error('Anda sudah mengikuti workshop ini');
                 }
 
-                if($check->role === 'speaker'){
+                if($check->pivot->role === 'speaker'){
                     $this->calculate_visited($workshop, false);
                     return $this->error('Speaker tidak bisa menjadi audience');
                 }

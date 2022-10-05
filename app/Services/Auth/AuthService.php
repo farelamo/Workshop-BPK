@@ -20,9 +20,10 @@ class AuthService
     {
         try {
 
-            $response = Socialite::driver('keycloak')->stateless()->user();
-            $data = $response->getRaw()['info'];
-            $user = User::updateOrCreate([
+            $response  = Socialite::driver('keycloak')->stateless()->user();
+            
+            $data      = $response->getRaw()['info'];
+            $user      = User::updateOrCreate([
                 'fullname'  => $data['NamaLengkap'],
                 'NIP'       => $data['NIP'],
                 'new_NIP'   => $data['NIPBaru'],
@@ -31,8 +32,7 @@ class AuthService
             ]);
 
             Auth::login($user);
-
-            return redirect('/anjay');
+            return redirect('/');
         } catch(Exception $e) {
 
             Alert::error('Maaf', 'terjadi kesalahan');
