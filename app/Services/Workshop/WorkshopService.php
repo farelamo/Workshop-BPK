@@ -95,10 +95,11 @@ class WorkshopService
         try {
 
             $workshop = Workshop::findOrFail($id);
+            $creator  = $workshop->users()->wherePivot('role', 'speaker')->first();
 
             $this->calculate_visited($workshop, true);
             
-            return view('Workshops.anjay', compact('workshop'));
+            return view('Workshops.detail', compact('workshop', 'creator'));
         } catch (Exception $e) {
             return $this->error('Terjadi Kesalahan');
         }
