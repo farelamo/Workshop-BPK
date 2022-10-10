@@ -32,6 +32,7 @@ class AuthService
             ]);
 
             Auth::login($user);
+            Alert::success('success', 'Anda berhasil login');
             return redirect('/');
         } catch(Exception $e) {
 
