@@ -11,7 +11,8 @@ class Workshop extends Model
 
     protected $fillable = [
         'title', 'description', 'destination', 'image', 'total_audience',
-        'document', 'date', 'link_id', 'topic_id', 'total_visited', 'cancelled'
+        'document', 'date', 'link_id', 'topic_id', 'total_visited', 'cancelled',
+        'target_audience_id'
     ];
 
     public function audience_evaluations(){

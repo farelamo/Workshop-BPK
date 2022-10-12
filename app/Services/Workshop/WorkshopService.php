@@ -4,8 +4,12 @@ namespace App\Services\Workshop;
 
 use Alert;
 use App\Models\Workshop;
+use App\Models\Topic;
+use App\Models\Link;
+use App\Models\TargetAudience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Workshop\WorkshopRequest;
 
 class WorkshopService
@@ -43,13 +47,15 @@ class WorkshopService
 
     public function create()
     {
-        $checkDate = $this->dateBooked();
-        return view('Workshops.create', compact('checkDate'));
+        $topics     = Topic::select('id', 'name')->get();
+        $links      = Link::select('id', 'link')->get();
+        $targets    = TargetAudience::select('id', 'name')->get();
+        $checkDate  = $this->dateBooked();
+        return view('Workshops.create', compact('checkDate', 'topics', 'links', 'targets'));
     }
 
     public function store(WorkshopRequest $request)
     {
-
         $checkDate = $this->dateBooked();
 
         $dateBooked = Workshop::where('date', '>', $checkDate['date_start'])
@@ -64,12 +70,14 @@ class WorkshopService
 
         try {
 
-            $imageFile = $request->file('image');
-            $image = $imageFile->getClientOriginalName();
-
-            $documentFile = $request->file('document');
-            $document = $documentFile->getClientOriginalName();
-
+            $imageFile      = $request->file('image');
+            $image          = time() . '-' . $imageFile->getClientOriginalName();
+            Storage::putFileAs('public/imagespublic/images', $imageFile, $image);
+            
+            $documentFile   = $request->file('document');
+            $document       = time() . '-' . $documentFile->getClientOriginalName();
+            Storage::putFileAs('public/documents', $documentFile, $document);
+            
             $workshop = Workshop::create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -80,6 +88,7 @@ class WorkshopService
                 'cancelled' => 'no',
                 'link_id' => $request->link_id,
                 'topic_id' => $request->topic_id,
+                'target_audience_id' => $request->target_audience_id,
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'speaker']);
 
