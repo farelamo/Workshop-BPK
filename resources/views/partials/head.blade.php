@@ -20,4 +20,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animated.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+
+    <style>
+        .error {
+            color: #FFE87C
+        }
+    </style>
 </head>

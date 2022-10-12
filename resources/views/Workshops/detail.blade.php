@@ -12,7 +12,7 @@
                 <div class="listworkshop p-5">
                     <div class="row">
                         <div class="col-lg-4">
-                            <img src="{{ asset('assets/images/Rectangle 34.png') }}" alt="">
+                            <img src="{{ Storage::url('public/images/' . $workshop->image) }}" class="rounded">
                             <p class="mt-2">
                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,9 @@
                             <p><span>Workshop Destination</span></p>
                             <p>{{ $workshop->destination }}</p>
                             <div class="filter">
-                                <button>Daftar</button>
+                                <a href="/workshop/{id}/join">
+                                    <button>Daftar</button>
+                                </a>
                             </div>
                         </div>
                     </div>

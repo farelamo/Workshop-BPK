@@ -5,15 +5,15 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="/" class="logo">
                         <img src="{{ asset('assets/images/logo (1).png') }}" alt="Chain App Dev">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">List Workshop</a></li>
-                        <li><a href="#" class="active">Create Workshop</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/workshop">List Workshop</a></li>
+                        <li><a href="/workshop/create" class="active">Create Workshop</a></li>
                         @if (!Auth::user())
                             <li>
                                 <div class="border-button">
@@ -45,9 +45,9 @@
                                                 <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                     <span>Logout</span>
                                                 </a>
-                                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                                {{-- <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                                     @csrf
-                                                </form>
+                                                </form> --}}
                                             </li>
                                         </ul>
                                     </li>
