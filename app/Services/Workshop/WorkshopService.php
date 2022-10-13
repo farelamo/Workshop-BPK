@@ -72,7 +72,7 @@ class WorkshopService
 
             $imageFile      = $request->file('image');
             $image          = time() . '-' . $imageFile->getClientOriginalName();
-            Storage::putFileAs('public/imagespublic/images', $imageFile, $image);
+            Storage::putFileAs('public/images', $imageFile, $image);
             
             $documentFile   = $request->file('document');
             $document       = time() . '-' . $documentFile->getClientOriginalName();
@@ -120,12 +120,15 @@ class WorkshopService
 
             $workshop = Workshop::findOrFail($id);
 
+            // if($request->hasFile()){
+
             $imageFile = $request->file('image');
             $image = $imageFile->getClientOriginalName();
 
             $documentFile = $request->file('document');
             $document = $documentFile->getClientOriginalName();
 
+            // }
             $workshop = Workshop::update([
                 'title'         => $request->title,
                 'description'   => $request->description,
