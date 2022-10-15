@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Workshop;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Services\Workshop\WorkshopService;
 use App\Http\Requests\Workshop\WorkshopRequest;
 use Log;
@@ -15,9 +16,9 @@ class WorkshopController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->service->index();
+        return $this->service->index($request);
     }
 
     public function create()

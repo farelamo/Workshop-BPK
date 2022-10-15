@@ -20,10 +20,7 @@ Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController
 Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/anjay', function(){
-        return view('home');
-    });
-
+    
     /*** Topic ***/
     // Route::get('topic', 'Workshop\TopicController@index');
     // Route::post('topic', 'Workshop\TopicController@store');
