@@ -3,7 +3,11 @@
 
     @include('partials.head')
 
-    <body style="background-color: #8B4BC4">
+    <body 
+        @if(!Request::is('/'))
+            style="background-color: #8B4BC4"
+        @endif
+    >
         @include('sweetalert::alert')
          
         @include('partials.header')

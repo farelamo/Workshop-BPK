@@ -10,7 +10,9 @@ use App\Models\TargetAudience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Http\Requests\Workshop\WorkshopRequest;
+use Log;
 
 class WorkshopService
 {
@@ -40,9 +42,30 @@ class WorkshopService
         });
     }
 
-    public function index()
+    public function filter($title, $topic, $link)
     {
-        return view('yuhu');
+        $data = Workshop::select(
+                    'id', 'title', 'description', 'date', 
+                    'link_id', 'total_audience', 'image'
+                );
+        
+        if(!is_null($title) || !is_null($topic) || !is_null($link)){
+            $data->whereRaw(
+                (!is_null($title) ? "title LIKE '%" . $title . "%' ". (!is_null($topic) || !is_null($link) ? 'AND ' : '') : '') .
+                (!is_null($topic) ? 'topic_id = ' . $topic . ' ' . (!is_null($link) ? 'AND ' : '') : '') .
+                (!is_null($link)  ? 'link_id  = ' . $link : '')
+            )->get();
+        }
+        return $data->get();
+    }
+
+    public function index(Request $request)
+    {
+        $topics     = Topic::select('id', 'name')->get();
+        $links      = Link::select('id', 'link')->get();
+        $workshops  = $this->filter($request->title, $request->topic_id, $request->link_id);
+        
+        return view('workshops.index', compact('workshops', 'topics', 'links'));
     }
 
     public function create()
@@ -101,14 +124,17 @@ class WorkshopService
 
     public function show($id)
     {
+        
         try {
+            $topics   = Topic::select('id', 'name')->get();
+            $links    = Link::select('id', 'link')->get();
 
             $workshop = Workshop::findOrFail($id);
             $creator  = $workshop->users()->wherePivot('role', 'speaker')->first();
 
             $this->calculate_visited($workshop, true);
             
-            return view('Workshops.detail', compact('workshop', 'creator'));
+            return view('Workshops.detail', compact('workshop', 'creator', 'topics', 'links'));
         } catch (Exception $e) {
             return $this->error('Terjadi Kesalahan');
         }
