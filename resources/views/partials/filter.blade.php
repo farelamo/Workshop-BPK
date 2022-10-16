@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <form action="/workshop" method="get" class="border-0">
-            @csrf
+            {{-- @csrf --}}
             
             <div class="col-lg-5">
                 <fieldset>
