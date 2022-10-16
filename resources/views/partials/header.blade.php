@@ -11,15 +11,25 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="/" class="{{ Request::url('/') ? 'active' : '' }}">Home</a></li>
-                        <li><a href="/workshop" class="{{ Request::url('/workshop') ? 'active' : '' }}">List Workshop</a>
+                        <li>
+                            <a href="/" class="{{ Request::is('') ? 'active' : '' }}">
+                                Home
+                            </a>
                         </li>
-                        <li><a href="/workshop/create"
-                                class="{{ Request::url('/workshop/create') ? 'active' : '' }}">Create Workshop</a></li>
+                        <li>
+                            <a href="/workshop" class="{{ Request::is('workshop') ? 'active' : '' }}">
+                                List Workshop
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/workshop/create" class="{{ Request::is('workshop/create') ? 'active' : '' }}">
+                                Create Workshop
+                            </a>
+                        </li>
                         @if (!Auth::user())
                             <li>
                                 <div class="border-button">
-                                    <a id="" href="">
+                                    <a href="/login">
                                         <i class="fa fa-sign-in-alt"></i>
                                         Login with SSO
                                     </a>

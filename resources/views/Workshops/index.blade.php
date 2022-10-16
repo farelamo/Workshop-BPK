@@ -74,14 +74,18 @@
                     @endforeach
 
                     <div class="pagination mt-3 py-1 px-3" style="background-color: white">
-                        <a href="#">&laquo;</a>
+                        {{-- <a href="#">&laquo;</a>
                         <a href="#">1</a>
                         <a href="#" class="active">2</a>
                         <p>...</p>
                         <a href="#">9</a>
                         <a href="#">10</a>
-                        <a href="#">&raquo;</a>
+                        <a href="#">&raquo;</a> --}}
+                        {!! $workshops->links() !!}
                     </div>
+                    {{-- @php
+                        dd($workshops);
+                    @endphp --}}
                 </div>
             </div>
         </div>

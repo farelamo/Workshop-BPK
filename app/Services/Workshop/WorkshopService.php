@@ -54,9 +54,9 @@ class WorkshopService
                 (!is_null($title) ? "title LIKE '%" . $title . "%' ". (!is_null($topic) || !is_null($link) ? 'AND ' : '') : '') .
                 (!is_null($topic) ? 'topic_id = ' . $topic . ' ' . (!is_null($link) ? 'AND ' : '') : '') .
                 (!is_null($link)  ? 'link_id  = ' . $link : '')
-            )->get();
+            )->paginate(5);
         }
-        return $data->get();
+        return $data->paginate(5);
     }
 
     public function index(Request $request)
