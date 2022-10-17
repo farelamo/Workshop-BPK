@@ -25,5 +25,18 @@
         .error {
             color: #FFE87C
         }
+
+        .page-link {
+            outline-color: red
+        }
+
+        .example .pagination > li > a,
+        .example .pagination > li > span {
+            border: 1px solid purple;
+        }
+        .pagination > li.active > a {
+            background: purple;
+            color: #fff;
+        }
     </style>
 </head>
