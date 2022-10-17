@@ -13,7 +13,7 @@
                     @foreach ($workshops as $workshop)
                         <div class="row m-4">
                             <div class="col-lg-3">
-                                <img src="{{ Storage::url('public/images/' . $workshop->image) }}" alt="">
+                                <img src="{{ Storage::url('public/images/' . $workshop->image) }}" class="rounded">
                             </div>
                             <div class="col-lg-9">
                                 <h4>{{ $workshop->title }}</h4>
@@ -73,19 +73,9 @@
                         <hr>
                     @endforeach
 
-                    <div class="pagination mt-3 py-1 px-3" style="background-color: white">
-                        {{-- <a href="#">&laquo;</a>
-                        <a href="#">1</a>
-                        <a href="#" class="active">2</a>
-                        <p>...</p>
-                        <a href="#">9</a>
-                        <a href="#">10</a>
-                        <a href="#">&raquo;</a> --}}
+                    <div class="d-flex justify-content-center" style="background-color: white">
                         {!! $workshops->links() !!}
                     </div>
-                    {{-- @php
-                        dd($workshops);
-                    @endphp --}}
                 </div>
             </div>
         </div>
