@@ -16,6 +16,11 @@ class WorkshopController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
+    public function filter(Request $request)
+    {
+        return $this->service->filter($request);
+    }
+
     public function index(Request $request)
     {
         return $this->service->index($request);

@@ -12,12 +12,14 @@ Route::get('/auth-callback', 'Auth\AuthController@login');
 
 Route::resource('/workshop', 'Workshop\WorkshopController');
 Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
+Route::post('workshop/filter', 'Workshop\WorkshopController@filter');
     
 /*** Speaker Evaluation ***/
 Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
 
 /*** Audience Evaluation ***/
 Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
+
 
 Route::middleware('auth')->group(function () {
     

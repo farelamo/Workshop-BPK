@@ -14,8 +14,8 @@
         </div>
     </div>
     <div class="row">
-        <form action="/workshop" method="get" class="border-0">
-            {{-- @csrf --}}
+        <form action="/workshop/filter" method="post" class="border-0">
+            @csrf
             
             <div class="col-lg-5">
                 <fieldset>

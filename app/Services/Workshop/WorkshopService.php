@@ -42,7 +42,7 @@ class WorkshopService
         });
     }
 
-    public function filter($title, $topic, $link)
+    public function filterLogic($title, $topic, $link)
     {
         $data = Workshop::select(
                     'id', 'title', 'description', 'date', 
@@ -59,11 +59,16 @@ class WorkshopService
         return $data->paginate(5);
     }
 
+    public function filter(Request $request)
+    {
+       return $this->index($request);
+    }
+
     public function index(Request $request)
     {
         $topics     = Topic::select('id', 'name')->get();
         $links      = Link::select('id', 'link')->get();
-        $workshops  = $this->filter($request->title, $request->topic_id, $request->link_id);
+        $workshops  = $this->filterLogic($request->title, $request->topic_id, $request->link_id);
         
         return view('workshops.index', compact('workshops', 'topics', 'links'));
     }
