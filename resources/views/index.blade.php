@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @include('partials.head')
-
+    <head>
+        @include('partials.head')
+        @yield('head')
+    </head>
+    
     <body 
         @if(!Request::is('/'))
             style="background-color: #8B4BC4"
@@ -16,5 +19,7 @@
 
         @include('partials.footer')
         @include('partials.script')
+
+        @yield('scripts')
     </body>
 </html>

@@ -58,9 +58,15 @@
                                             </svg>
                                         </div>
                                         <ul>
-                                            <li><a href="laporanPembicara.html"><span>Laporan sebagai
-                                                        Pembicara</span></a></li>
-                                            <li><a href="laporanPeserta.html"><span>Laporan sebagai Peserta</span></a>
+                                            <li>
+                                                <a href="/workshop/evaluation/speaker">
+                                                    <span>Laporan sebagai Pembicara</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/workshop/evaluation/audience">
+                                                    <span>Laporan sebagai Peserta</span>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="/logout">

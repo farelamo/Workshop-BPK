@@ -10,10 +10,10 @@ class CreateAudienceEvaluationsTable extends Migration
     {
         Schema::create('audience_evaluations', function (Blueprint $table) {
             $table->id();
-            $table->text('received');
-            $table->text('speaker_suggestion');
-            $table->text('event_suggestion');
-            $table->text('note');
+            $table->text('received')->nullable();
+            $table->text('speaker_suggestion')->nullable();
+            $table->text('event_suggestion')->nullable();
+            $table->text('note')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('workshop_id')->constrained();
             $table->timestamps();
