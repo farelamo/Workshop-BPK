@@ -4,40 +4,45 @@ namespace App\Services\Evaluations;
 
 use Alert;
 use App\Models\Workshop;
-use App\Models\AudienceEvaluation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Evaluations\AudienceRequest;
 use App\Http\Requests\Evaluations\AudienceEvaluationRequest;
 
 class AudienceEvaluationService
 {
-    public function index($id)
+    public function index()
     {
-        $anjay = Auth::user()->audience_evaluations->where('workshop_id', $id);
-        dd($anjay);
-        
-        $result = [];
-        foreach(Auth::user()->audience_evaluations as $audience){
-            $data = [];
-            $data['received']       = $audience->pivot->received;
-            $data['note']           = $audience->pivot->note;
-            $data['workshop_id']    = $audience->pivot->workshop_id;
-            array_push($result, $data);
-        }
-        dd($result);
+        $evaluations = Auth::user()->audience_evaluations()->paginate(5);
+        return view('Workshops.Evaluations.audience', compact('evaluations'));
     }
 
-    public function store($id){
+    public function store(AudienceRequest $request, $id){
+        try {
 
-        $workshop = Workshop::find($id);
-       
-        $workshop->audience_evaluations()->attach(Auth::user()->id, [
-            'received'              => 'test received',
-            'speaker_suggestion'    => 'test speaker suggestion',
-            'event_suggestion'      => 'test event suggestion',
-            'note'                  => 'test note',
-        ]);
+            $data   = Auth::user()->audience_evaluations()
+                                    ->wherePivot('workshop_id', $id)
+                                    ->first();
+                                    
+            $noteFile   = $request->file('note');
+            $note       = time() . '-' . $noteFile->getClientOriginalName();
+            Storage::putFileAs('public/evaluations/audience', $noteFile, $note);                    
 
-        return $this->index($id);
+            $data->audience_evaluations()->detach(Auth::user()->id);
+            $data->audience_evaluations()->attach(Auth::user()->id, [
+                'received'              => $request->received,
+                'speaker_suggestion'    => $request->speaker_suggestion,
+                'event_suggestion'      => $request->event_suggestion,
+                'note'                  => $note,
+            ]);
+
+            Alert::success('Success', 'Silahkan download sertifikat anda');
+            return redirect('workshop/evaluation/audience');
+        }catch(Exception $e){
+            
+            Alert::error('Maaf', 'Terjadi Kesalahan');
+            return redirect()->back()->withInput();
+        }
     }
 }
 

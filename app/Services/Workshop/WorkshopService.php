@@ -3,16 +3,15 @@
 namespace App\Services\Workshop;
 
 use Alert;
-use App\Models\Workshop;
 use App\Models\Topic;
 use App\Models\Link;
+use App\Models\Workshop;
+use Illuminate\Http\Request;
 use App\Models\TargetAudience;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
 use App\Http\Requests\Workshop\WorkshopRequest;
-use Log;
 
 class WorkshopService
 {
@@ -119,6 +118,7 @@ class WorkshopService
                 'target_audience_id' => $request->target_audience_id,
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'speaker']);
+            $workshop->speaker_evaluations()->attach(Auth::user()->id);
 
             Alert::success('Success', 'Workshop berhasil dibuat');
             return redirect('/workshop/' . $workshop->id);
@@ -204,6 +204,7 @@ class WorkshopService
                 'total_audience' => $workshop->total_audience + 1
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'audience']);
+            $workshop->audience_evaluations()->attach(Auth::user()->id);
 
             Alert::success('Berhasil mengikuti workshop', 'Silahkan cek email yang terdaftar');
             return redirect('/workshop/'. $id);

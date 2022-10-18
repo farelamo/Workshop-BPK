@@ -14,12 +14,16 @@ Route::resource('/workshop', 'Workshop\WorkshopController');
 Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
 Route::post('workshop/filter', 'Workshop\WorkshopController@filter');
     
-/*** Speaker Evaluation ***/
-Route::get('workshop/{id}/evaluation', 'Evaluations\AudienceEvaluationController@index');
-
 /*** Audience Evaluation ***/
-Route::get('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
+Route::get('workshop/evaluation/audience', 'Evaluations\AudienceEvaluationController@index');
+Route::post('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
 
+/*** Speaker Evaluation ***/
+Route::get('workshop/evaluation/speaker', 'Evaluations\SpeakerEvaluationController@index');
+Route::post('workshop/{id}/speaker', 'Evaluations\SpeakerEvaluationController@store');
+
+/*** Logout ***/ 
+Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::middleware('auth')->group(function () {
     
@@ -34,7 +38,4 @@ Route::middleware('auth')->group(function () {
     // Route::post('link', 'Workshop\LinkController@store');
     // Route::update('link/{id}', 'Workshop\LinkController@update');
     // Route::delete('link/{id}', 'Workshop\LinkController@destroy');
-
-    /*** Logout ***/ 
-    Route::get('/logout', 'Auth\AuthController@logout');
 });

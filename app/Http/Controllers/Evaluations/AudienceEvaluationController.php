@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Evaluations;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Evaluations\AudienceRequest;
 use App\Services\Evaluations\AudienceEvaluationService;
 
 class AudienceEvaluationController extends Controller
@@ -11,15 +12,16 @@ class AudienceEvaluationController extends Controller
     public function __construct(AudienceEvaluationService $service)
     {
         $this->service = $service;
+        $this->middleware('auth');
     }
 
-    public function index($id)
+    public function index()
     {
-        return $this->service->index($id);
+        return $this->service->index();
     }
 
-    public function store($id)
+    public function store(AudienceRequest $request, $id)
     {
-        return $this->service->store($id);
+        return $this->service->store($request, $id);
     }
 }

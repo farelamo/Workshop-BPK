@@ -1,2 +1,0 @@
-YEAYYY
-@include('sweetalert::alert')
