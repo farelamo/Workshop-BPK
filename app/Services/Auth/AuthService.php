@@ -10,12 +10,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthService
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth')->only('logout');
-    }
-
     public function loginIndex()
     {
         return Socialite::driver('keycloak')->scopes(['profile'])->redirect();

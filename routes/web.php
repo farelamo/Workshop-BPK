@@ -7,12 +7,14 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+/*** Auth ***/
 Route::get('/login', 'Auth\AuthController@loginIndex')->name('login');
 Route::get('/auth-callback', 'Auth\AuthController@login');
+Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::resource('/workshop', 'Workshop\WorkshopController');
 Route::put('workshop/{id}/join', 'Workshop\WorkshopController@join');
-Route::post('workshop/filter', 'Workshop\WorkshopController@filter');
+Route::get('workshops/filter', 'Workshop\WorkshopController@index');
     
 /*** Audience Evaluation ***/
 Route::get('workshop/evaluation/audience', 'Evaluations\AudienceEvaluationController@index');
@@ -21,9 +23,6 @@ Route::post('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@
 /*** Speaker Evaluation ***/
 Route::get('workshop/evaluation/speaker', 'Evaluations\SpeakerEvaluationController@index');
 Route::post('workshop/{id}/speaker', 'Evaluations\SpeakerEvaluationController@store');
-
-/*** Logout ***/ 
-Route::get('/logout', 'Auth\AuthController@logout');
 
 Route::middleware('auth')->group(function () {
     

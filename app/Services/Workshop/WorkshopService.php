@@ -46,21 +46,16 @@ class WorkshopService
         $data = Workshop::select(
                     'id', 'title', 'description', 'date', 
                     'link_id', 'total_audience', 'image'
-                );
-        
-        if(!is_null($title) || !is_null($topic) || !is_null($link)){
-            $data->whereRaw(
-                (!is_null($title) ? "title LIKE '%" . $title . "%' ". (!is_null($topic) || !is_null($link) ? 'AND ' : '') : '') .
-                (!is_null($topic) ? 'topic_id = ' . $topic . ' ' . (!is_null($link) ? 'AND ' : '') : '') .
-                (!is_null($link)  ? 'link_id  = ' . $link : '')
-            )->paginate(5);
-        }
-        return $data->paginate(5);
-    }
-
-    public function filter(Request $request)
-    {
-       return $this->index($request);
+                )->when($title, function ($query, $title) {
+                    return $query->where('title', 'like', '%'. $title .'%');
+                })
+                ->when($topic, function ($query, $topic) {
+                    return $query->where('topic_id', $topic);
+                })
+                ->when($link, function ($query, $link) {
+                    return $query->where('link_id', $link);
+                });
+        return $data->paginate(5)->withQueryString();
     }
 
     public function index(Request $request)
@@ -69,6 +64,7 @@ class WorkshopService
         $links      = Link::select('id', 'link')->get();
         $workshops  = $this->filterLogic($request->title, $request->topic_id, $request->link_id);
         
+        session()->flashInput($request->input());
         return view('workshops.index', compact('workshops', 'topics', 'links'));
     }
 
