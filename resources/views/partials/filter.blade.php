@@ -14,12 +14,11 @@
         </div>
     </div>
     <div class="row">
-        <form action="/workshop/filter" method="post" class="border-0">
-            @csrf
+        <form action="/workshops/filter" method="get" class="border-0">
             
             <div class="col-lg-5">
                 <fieldset>
-                    <input name="title" placeholder="Search for workshopname" autocomplete="on">
+                    <input name="title" placeholder="Search for workshop name" autocomplete="on" value="{{ old('title') }}">
                 </fieldset>
             </div>
             <div class="col ps-2">
@@ -27,6 +26,9 @@
                     <select name="topic_id" autocomplete="on" class="text-center">
                         <option value="">-- Select Category --</option>
                         @foreach ($topics as $topic)
+                            @if (old('topic_id') == $topic->id)
+                                <option value="{{ $topic->id }}" selected>{{ $topic->name }}</option>
+                            @endif
                             <option value="{{ $topic->id }}">{{ $topic->name }}</option>
                         @endforeach
                     </select>
@@ -37,11 +39,18 @@
                     <select name="link_id" class="text-center" autocomplete="on">
                         <option value="">-- Select Schedule --</option>
                         @foreach ($links as $link)
-
                             @if($link->id == 1)
-                                <option value="{{ $link->id }}">09.00 - 12.00</option>
+                                @if (old('link_id') == $link->id)
+                                    <option value="{{ $link->id }}" selected>09.00 - 12.00</option>
+                                @else
+                                    <option value="{{ $link->id }}">09.00 - 12.00</option>
+                                @endif
                             @else
-                                <option value="{{ $link->id }}">15.00 - 17.00</option>
+                                @if (old('link_id') == $link->id)
+                                    <option value="{{ $link->id }}" selected>15.00 - 17.00</option>
+                                @else
+                                    <option value="{{ $link->id }}">15.00 - 17.00</option>
+                                @endif
                             @endif
                         @endforeach
                     </select>
