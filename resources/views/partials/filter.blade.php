@@ -28,8 +28,9 @@
                         @foreach ($topics as $topic)
                             @if (old('topic_id') == $topic->id)
                                 <option value="{{ $topic->id }}" selected>{{ $topic->name }}</option>
+                            @else
+                                <option value="{{ $topic->id }}">{{ $topic->name }}</option>
                             @endif
-                            <option value="{{ $topic->id }}">{{ $topic->name }}</option>
                         @endforeach
                     </select>
                 </fieldset>

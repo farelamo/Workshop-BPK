@@ -35,12 +35,14 @@
                                                 <div class="col-lg-6 col-sm-6">
                                                     <fieldset>
                                                         <p>Topik</p>
-                                                        <select name="topic_id" autocomplete="on"
-                                                            value="{{ old('topic_id') }}" style="color: #4D4076">
+                                                        <select name="topic_id" autocomplete="on" style="color: #4D4076">
                                                             <option value="">-- Pilih Topik --</option>
                                                             @foreach ($topics as $topic)
-                                                                <option value="{{ $topic->id }}">{{ $topic->name }}
-                                                                </option>
+                                                                @if (old('topic_id') == $topic->id)
+                                                                    <option value="{{ $topic->id }}" selected>{{ $topic->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </fieldset>
@@ -52,11 +54,14 @@
                                                     <fieldset>
                                                         <p>Target Audience</p>
                                                         <select name="target_audience_id" autocomplete="on"
-                                                            value="{{ old('target_audience_id') }}" style="color: #4D4076">
+                                                            style="color: #4D4076">
                                                             <option value="">-- Pilih Target Audience --</option>
                                                             @foreach ($targets as $target)
-                                                                <option value="{{ $target->id }}">{{ $target->name }}
-                                                                </option>
+                                                                @if (old('target_audience_id') == $target->id)
+                                                                    <option value="{{ $target->id }}" selected>{{ $target->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $target->id }}" selected>{{ $target->name }}</option>
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </fieldset>
@@ -67,8 +72,8 @@
                                                 <div class="col-lg-12 col-sm-12 mt-2">
                                                     <fieldset>
                                                         <p>Judul</p>
-                                                        <input name="title" autocomplete="on"
-                                                            value="{{ old('title') }}" style="color: #4D4076">
+                                                        <input name="title" autocomplete="on" value="{{ old('title') }}"
+                                                            style="color: #4D4076">
                                                         @error('title')
                                                             <div class="error">*{{ $message }}</div>
                                                         @enderror
@@ -97,16 +102,21 @@
                                                 <div class="col-lg-6 col-sm-6">
                                                     <fieldset>
                                                         <p>Sesi</p>
-                                                        <select name="link_id" style="color: #4D4076" autocomplete="on"
-                                                            value="{{ old('link_id') }}">
+                                                        <select name="link_id" style="color: #4D4076" autocomplete="on">
                                                             <option value="">-- Pilih Sesi --</option>
                                                             @foreach ($links as $link)
                                                                 @if ($link->id == 1)
-                                                                    <option value="{{ $link->id }}">09.00 - 12.00
-                                                                    </option>
+                                                                    @if (old('link_id') == $link->id)
+                                                                        <option value="{{ $link->id }}" selected>09.00 - 12.00</option>
+                                                                    @else
+                                                                        <option value="{{ $link->id }}">09.00 - 12.00</option>
+                                                                    @endif
                                                                 @else
-                                                                    <option value="{{ $link->id }}">15.00 - 17.00
-                                                                    </option>
+                                                                    @if (old('link_id') == $link->id)
+                                                                        <option value="{{ $link->id }}" selected>15.00 - 17.00</option>
+                                                                    @else
+                                                                        <option value="{{ $link->id }}">15.00 - 17.00</option>
+                                                                    @endif
                                                                 @endif
                                                             @endforeach
                                                         </select>
@@ -146,15 +156,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-check mt-3">
-                                                <input class="form-check-input" type="checkbox" required
-                                                    id="term1">
+                                                <input class="form-check-input" type="checkbox" required id="term1">
                                                 <label class="form-check-label" for="term1">
                                                     <p1>Bersedia berbagi dan berdiskusi secara profesional.</p1>
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" required
-                                                    id="term2">
+                                                <input class="form-check-input" type="checkbox" required id="term2">
                                                 <label class="form-check-labelform-check-label" for="term2">
                                                     <p1>Bersedia menyelenggarakan kegiatan forum workshop.</p1>
                                                 </label>
