@@ -68,7 +68,7 @@
                             <p><span>Workshop Destination</span></p>
                             <p>{{ $workshop->destination }}</p>
                             <div class="filter">
-                                <form action="/workshop/{{ $workshop->id }}/join" method="post">
+                                <form action="/workshop/{{ $workshop->id }}/join" method="post" style="background-color: transparent; border: 0">
                                     @csrf @method('put')
                                     <button>Daftar</button>
                                 </form>

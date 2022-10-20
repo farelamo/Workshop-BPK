@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Evaluations;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Evaluations\SpeakerRequest;
 use App\Services\Evaluations\SpeakerEvaluationService;
@@ -14,9 +15,9 @@ class SpeakerEvaluationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->service->index();
+        return $this->service->index($request);
     }
 
     public function store(SpeakerRequest $request, $id)

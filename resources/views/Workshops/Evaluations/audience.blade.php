@@ -14,15 +14,30 @@
     <div class="main-banner" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
         <div class="container">
             <div class="col-lg-12">
-                <h2>Laporan sebagai Peserta</h2>
-                <div class="upper my-3">
-                    <button class="me-1">Judul Workshop</button>
-                    <button class="me-1">Jadwal Workshop</button>
-                    <div class="search">
-                        <input type="address" name="address" class="align-self-end" placeholder="Search" autocomplete="on"
-                            required>
+                <h2>Laporan sebagai Peserta</h2> 
+                <form action="/workshop/evaluation/audience/filter" method="get" style="background-color: transparent; border: 0">
+                    
+                    <div class="upper my-1 w-100 d-flex justify-content-between">
+                        <div>
+                            <button class="me-1" value="{{ old('sortTitle') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortTitle">
+                                Judul Workshop
+                                @if ( old('sortTitle') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @else <i class="fa fa-arrow-down"></i>
+                                @endif
+                            </button>
+
+                            <button class="me-1" value="{{ old('sortSchedule') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortSchedule">
+                                Jadwal Workshop
+                                @if ( old('sortSchedule') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @else <i class="fa fa-arrow-down"></i>
+                                @endif
+                            </button>
+                        </div>
+                        <div class="Search">
+                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{ old('title') }}">
+                        </div>
                     </div>
-                </div>
+                </form>
                 <div class="tabel first-service">
                     <div class="row head">
                         <div class="col">
@@ -50,8 +65,8 @@
                             </div>
 
                             @if (
-                                    !$evaluation->pivot->received && !$evaluation->pivot->speaker_suggestion &&
-                                    !$evaluation->pivot->event_suggestion && !$evaluation->pivot->note
+                                    !$evaluation->pivot->received || !$evaluation->pivot->speaker_suggestion ||
+                                    !$evaluation->pivot->event_suggestion || !$evaluation->pivot->note
                                 )
                                 <div class="col evaluasi">
                                     <a style="color:rgba(139, 75, 196, 1)" href="#" data-bs-toggle="modal"
@@ -110,70 +125,70 @@
 
                         <div class="mt-2">
                             <p>Pembaharuan yang diperoleh</p>
-                            <textarea type="text" name="received" required>{{ old('received') }}</textarea>
+                            <textarea type="text" name="received">{{ old('received') }}</textarea>
                             @error('received')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
 
                             <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
+                                <input type="radio" id="star5" name="receivedRate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
+                                <input type="radio" id="star4" name="receivedRate" value="4" />
                                 <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
+                                <input type="radio" id="star3" name="receivedRate" value="3" />
                                 <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
+                                <input type="radio" id="star2" name="receivedRate" value="2" />
                                 <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
+                                <input type="radio" id="star1" name="receivedRate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                                 <p>Penilaian</p>
                             </div>
                         </div>
                         <div class="">
                             <p>Saran perbaikan untuk pembicara</p>
-                            <textarea type="text" name="speaker_suggestion" required>{{ old('speaker_suggestion') }}</textarea>
+                            <textarea type="text" name="speaker_suggestion">{{ old('speaker_suggestion') }}</textarea>
                             @error('speaker_suggestion')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
 
                             <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
+                                <input type="radio" id="star5" name="speakerRate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
+                                <input type="radio" id="star4" name="speakerRate" value="4" />
                                 <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
+                                <input type="radio" id="star3" name="speakerRate" value="3" />
                                 <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
+                                <input type="radio" id="star2" name="speakerRate" value="2" />
                                 <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
+                                <input type="radio" id="star1" name="speakerRate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                                 <p>Penilaian</p>
                             </div>
                         </div>
                         <div class="">
                             <p>Saran perbaikan untuk acara</p>
-                            <textarea type="text" name="event_suggestion" required>{{ old('event_suggestion') }}</textarea>
+                            <textarea type="text" name="event_suggestion">{{ old('event_suggestion') }}</textarea>
                             @error('event_suggestion')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
 
                             <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
+                                <input type="radio" id="star5" name="eventRate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
+                                <input type="radio" id="star4" name="eventRate" value="4" />
                                 <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
+                                <input type="radio" id="star3" name="eventRate" value="3" />
                                 <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
+                                <input type="radio" id="star2" name="eventRate" value="2" />
                                 <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
+                                <input type="radio" id="star1" name="eventRate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                                 <p>Penilaian</p>
                             </div>
                         </div>
                         <div>
                             <p>Upload catatan anda (Dalam bentuk PDF)</p>
-                            <input type="file" name="note" required>
+                            <input type="file" name="note">
                             @error('note')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -194,13 +209,14 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $('#audience').modal('show');
+                //pake swal $messagenya
             });
         </script>
     @endif
 
     <script>
         function audience(id) {
-            document.getElementById('formAudience').action = `/workshop/${id}/audience`;
+            document.getElementById('formAudience').action = `/workshop/${id}/audience/`;
         }
     </script>
 @endsection

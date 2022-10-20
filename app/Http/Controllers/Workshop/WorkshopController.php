@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Workshop\WorkshopService;
 use App\Http\Requests\Workshop\WorkshopRequest;
-use Log;
 
 class WorkshopController extends Controller
 {
     public function __construct(WorkshopService $service)
     {
         $this->service = $service;
-        $this->middleware('auth')->except(['index', 'show', 'filter']);
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index(Request $request)

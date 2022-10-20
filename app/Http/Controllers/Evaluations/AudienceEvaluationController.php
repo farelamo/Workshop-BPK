@@ -15,9 +15,9 @@ class AudienceEvaluationController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->service->index();
+        return $this->service->index($request);
     }
 
     public function store(AudienceRequest $request, $id)

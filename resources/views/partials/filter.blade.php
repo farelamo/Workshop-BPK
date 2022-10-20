@@ -15,7 +15,6 @@
     </div>
     <div class="row">
         <form action="/workshops/filter" method="get" class="border-0">
-            
             <div class="col-lg-5">
                 <fieldset>
                     <input name="title" placeholder="Search for workshop name" autocomplete="on" value="{{ old('title') }}">
