@@ -3,7 +3,9 @@
 namespace App\Services\Evaluations;
 
 use Alert;
+use Exception;
 use App\Models\Workshop;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Evaluations\AudienceRequest;
@@ -11,9 +13,31 @@ use App\Http\Requests\Evaluations\AudienceEvaluationRequest;
 
 class AudienceEvaluationService
 {
-    public function index()
+    public function filter($title, $sortTitle, $sortSchedule)
     {
-        $evaluations = Auth::user()->audience_evaluations()->paginate(5);
+        $data = Auth::user()->audience_evaluations()
+                ->when($sortSchedule, function($query, $sortSchedule){
+                    return $query->orderBy('date', $sortSchedule);
+                })
+                ->when($sortTitle, function($query, $sortTitle){
+                    return $query->orderBy('title', $sortTitle);
+                })
+                ->when($title, function($query, $title){
+                    return $query->where('title', 'like', '%'. $title .'%');
+                });
+
+        return $data->paginate(5)->withQueryString();
+    }
+
+    public function index(Request $request)
+    {
+        $evaluations = $this->filter(
+            $request->input('title'), 
+            $request->input('sortTitle'), 
+            $request->input('sortSchedule')
+        );
+        
+        session()->flashInput($request->input());
         return view('Workshops.Evaluations.audience', compact('evaluations'));
     }
 

@@ -3,8 +3,10 @@
 namespace App\Services\Workshop;
 
 use Alert;
-use App\Models\Topic;
+use Exception;
+use Carbon\Carbon;
 use App\Models\Link;
+use App\Models\Topic;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
 use App\Models\TargetAudience;
@@ -41,7 +43,7 @@ class WorkshopService
         });
     }
 
-    public function filterLogic($title, $topic, $link)
+    public function filter($title, $topic, $link)
     {
         $data = Workshop::select(
                     'id', 'title', 'description', 'date', 
@@ -55,6 +57,7 @@ class WorkshopService
                 ->when($link, function ($query, $link) {
                     return $query->where('link_id', $link);
                 });
+                
         return $data->paginate(5)->withQueryString();
     }
 
@@ -62,7 +65,7 @@ class WorkshopService
     {
         $topics     = Topic::select('id', 'name')->get();
         $links      = Link::select('id', 'link')->get();
-        $workshops  = $this->filterLogic($request->title, $request->topic_id, $request->link_id);
+        $workshops  = $this->filter($request->title, $request->topic_id, $request->link_id);
         
         session()->flashInput($request->input());
         return view('workshops.index', compact('workshops', 'topics', 'links'));
@@ -176,7 +179,14 @@ class WorkshopService
     public function join($id){
         try {
 
-            $workshop = Workshop::findOrFail($id);
+            $workshop   = Workshop::findOrFail($id);
+
+            $dateNow    = date("Y-m-d");
+            $overApply  = date('Y-m-d', strtotime($workshop->date));
+
+            if($dateNow >= $overApply){
+                return $this->error('Pendaftaran Sudah Tutup');
+            }
 
             if($workshop->total_audience == 80){
                 return $this->error('Kuota Sudah Penuh');

@@ -15,15 +15,29 @@
         <div class="container">
             <div class="col-lg-12">
                 <h2>Laporan sebagai Pembicara</h2>
-                <div class="upper my-3">
-                    <button class="me-1">Judul Workshop</button>
-                    <button class="me-1">Jadwal Workshop</button>
-                    <button class="me-1">Jumlah Peserta</button>
-                    <div class="search">
-                        <input type="address" name="address" class="align-self-end" placeholder="Search" autocomplete="on"
-                            required>
+                <form action="/workshop/evaluation/speaker/filter" method="get" style="background-color: transparent; border: 0">
+                    
+                    <div class="upper my-1 w-100 d-flex justify-content-between">
+                        <div>
+                            <button class="me-1" value="{{ old('sortTitle') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortTitle">
+                                Judul Workshop
+                                @if ( old('sortTitle') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @else <i class="fa fa-arrow-down"></i>
+                                @endif
+                            </button>
+
+                            <button class="me-1" value="{{ old('sortSchedule') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortSchedule">
+                                Jadwal Workshop
+                                @if ( old('sortSchedule') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @else <i class="fa fa-arrow-down"></i>
+                                @endif
+                            </button>
+                        </div>
+                        <div class="search">
+                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{ old('title') }}">
+                        </div>
                     </div>
-                </div>
+                </form>
                 <div class="tabel first-service">
                     <div class="row head">
                         <div class="col">
@@ -56,7 +70,7 @@
                                 <p>{{ $evaluation->total_audience }}</p>
                             </div>
 
-                            @if (!$evaluation->pivot->comfortable && !$evaluation->pivot->event_suggestion && !$evaluation->pivot->file)
+                            @if (!$evaluation->pivot->comfortable || !$evaluation->pivot->event_suggestion || !$evaluation->pivot->file)
                                 <div class="col evaluasi">
                                     <a style="color:rgba(139, 75, 196, 1)" href="#" data-bs-toggle="modal"
                                         data-bs-target="#speaker" onclick='speaker("{{ $evaluation->id }}")'>
@@ -114,7 +128,7 @@
 
                         <div class="mt-2">
                             <p>Kenyamanan sebagai pembicara</p>
-                            <textarea type="text" name="comfortable" required>{{ old('comfortable') }}</textarea>
+                            <textarea type="text" name="comfortable">{{ old('comfortable') }}</textarea>
                             @error('comfortable')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -135,7 +149,7 @@
                         </div>
                         <div>
                             <p>Usulan perbaikan penyelenggaraan</p>
-                            <textarea type="text" name="event_suggestion" required>{{ old('event_suggestion') }}</textarea>
+                            <textarea type="text" name="event_suggestion">{{ old('event_suggestion') }}</textarea>
                             @error('event_suggestion')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -156,7 +170,7 @@
                         </div>
                         <div>
                             <p>Upload update materi anda (Dalam bentuk PDF)</p>
-                            <input type="file" name="file" required>
+                            <input type="file" name="file">
                             @error('file')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
