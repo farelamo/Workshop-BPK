@@ -3,6 +3,7 @@
 namespace App\Services\Auth;
 
 use Alert;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +20,11 @@ class AuthService
     {
         try {
 
-            $response  = Socialite::driver('keycloak')->stateless()->user();
+            $response   = Socialite::driver('keycloak')->stateless()->user();
             
-            $data      = $response->getRaw()['info'];
-            $user      = User::updateOrCreate([
+            $data       = $response->getRaw()['info'];
+
+            $user       = User::updateOrCreate([
                 'fullname'  => $data['NamaLengkap'],
                 'NIP'       => $data['NIP'],
                 'new_NIP'   => $data['NIPBaru'],
