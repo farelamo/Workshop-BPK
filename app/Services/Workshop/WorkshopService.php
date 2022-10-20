@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\Workshop;
+use App\Jobs\sendCreateMail;
+use App\Jobs\sendJoinMail;
 use Illuminate\Http\Request;
 use App\Models\TargetAudience;
 use Illuminate\Support\Facades\DB;
@@ -63,21 +65,32 @@ class WorkshopService
 
     public function index(Request $request)
     {
-        $topics     = Topic::select('id', 'name')->get();
-        $links      = Link::select('id', 'link')->get();
-        $workshops  = $this->filter($request->title, $request->topic_id, $request->link_id);
-        
-        session()->flashInput($request->input());
-        return view('workshops.index', compact('workshops', 'topics', 'links'));
+        try {
+
+            $topics     = Topic::select('id', 'name')->get();
+            $links      = Link::select('id', 'link')->get();
+            $workshops  = $this->filter($request->title, $request->topic_id, $request->link_id);
+            
+            session()->flashInput($request->input());
+            return view('workshops.index', compact('workshops', 'topics', 'links'));
+        }catch(Exception $e){
+            return $this->error('Terjadi Kesalahan');
+        }
     }
 
     public function create()
     {
-        $topics     = Topic::select('id', 'name')->get();
-        $links      = Link::select('id', 'link')->get();
-        $targets    = TargetAudience::select('id', 'name')->get();
-        $checkDate  = $this->dateBooked();
-        return view('Workshops.create', compact('checkDate', 'topics', 'links', 'targets'));
+        try {
+
+            $topics     = Topic::select('id', 'name')->get();
+            $links      = Link::select('id', 'link')->get();
+            $targets    = TargetAudience::select('id', 'name')->get();
+            $checkDate  = $this->dateBooked();
+            
+            return view('Workshops.create', compact('checkDate', 'topics', 'links', 'targets'));
+        }catch(Exception $e){
+            return $this->error('Terjadi Kesalahan');
+        }
     }
 
     public function store(WorkshopRequest $request)
@@ -118,6 +131,12 @@ class WorkshopService
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'speaker']);
             $workshop->speaker_evaluations()->attach(Auth::user()->id);
+
+            dispatch(new sendCreateMail([
+                    'email'     => Auth::user()->email,
+                    'fullname'  => Auth::user()->fullname,
+                ], $workshop)
+            );
 
             Alert::success('Success', 'Workshop berhasil dibuat');
             return redirect('/workshop/' . $workshop->id);
@@ -211,6 +230,12 @@ class WorkshopService
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'audience']);
             $workshop->audience_evaluations()->attach(Auth::user()->id);
+
+            dispatch(new sendJoinMail([
+                    'email'     => Auth::user()->email,
+                    'fullname'  => Auth::user()->fullname,
+                ], $workshop)
+            );
 
             Alert::success('Berhasil mengikuti workshop', 'Silahkan cek email yang terdaftar');
             return redirect('/workshop/'. $id);
