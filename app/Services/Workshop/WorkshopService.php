@@ -148,11 +148,11 @@ class WorkshopService
     public function show($id)
     {
         
+        $workshop = Workshop::findOrFail($id);
         try {
             $topics   = Topic::select('id', 'name')->get();
             $links    = Link::select('id', 'link')->get();
 
-            $workshop = Workshop::findOrFail($id);
             $creator  = $workshop->users()->wherePivot('role', 'speaker')->first();
 
             $this->calculate_visited($workshop, true);
