@@ -23,7 +23,7 @@ class SpeakerEvaluationService
                     return $query->orderBy('title', $sortTitle);
                 })
                 ->when($sortSchedule, function($query, $sortSchedule){
-                    return $query->orderBy('date', $sortSchedule);
+                    return $query->orderBy('total_audience', $sortSchedule);
                 });
         // dd($data->toSql());
 

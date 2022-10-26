@@ -47,6 +47,9 @@
                             <p>Jadwal Workshop</p>
                         </div>
                         <div class="col">
+                            <p>Cancel</p>
+                        </div>
+                        <div class="col">
                             <p>Evaluasi</p>
                         </div>
                         <div class="col">
@@ -63,18 +66,25 @@
                             <div class="col tanggal">
                                 <p>{{ $evaluation->date }}</p>
                             </div>
+                            
+                            @php
+                                $dateNow    = date("Y-m-d");
+                                $dateEval   = date('Y-m-d', strtotime("+1 day", strtotime($evaluation->date)));
+                            @endphp
 
-                            @if (
-                                    !$evaluation->pivot->received || !$evaluation->pivot->speaker_suggestion ||
-                                    !$evaluation->pivot->event_suggestion || !$evaluation->pivot->note
-                                )
+                            @if ($evaluation->cancelled === 'yes')
                                 <div class="col evaluasi">
-                                    <a style="color:rgba(139, 75, 196, 1)" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#audience" onclick='audience("{{ $evaluation->id }}")'>
-                                        <button>
-                                            evaluasi disini
-                                        </button>
-                                    </a>
+                                    <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 6.5L6.625 12.125L16 0.875" stroke="#8B4BC4" stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <div class="col sertif">
+                                    <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                        <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                    </svg>
                                 </div>
                                 <div class="col sertif">
                                     <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
@@ -84,22 +94,80 @@
                                     </svg>
                                 </div>
                             @else
-                                <div class="col evaluasi">
-                                    <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 6.5L6.625 12.125L16 0.875" stroke="#8B4BC4" stroke-width="2" />
-                                    </svg>
-                                </div>
-                                <div class="col sertif">
-                                    <div class="green mb-1">
-                                        <button>Download</button>
-                                    </div>
-                                    <div>
-                                        <button>Lihat</button>
-                                    </div>
-                                </div>
+                                @if ($dateNow >= $dateEval)
+                                    @if (
+                                            !$evaluation->pivot->received || !$evaluation->pivot->speaker_suggestion ||
+                                            !$evaluation->pivot->event_suggestion || !$evaluation->pivot->note
+                                        )
+                                        <div class="col sertif">
+                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="col evaluasi">
+                                            <a style="color:rgba(139, 75, 196, 1)" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#audience" onclick='audience("{{ $evaluation->id }}")'>
+                                                <button>
+                                                    evaluasi disini
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="col sertif">
+                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                    @else
+                                        <div class="col sertif">
+                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="col evaluasi">
+                                            <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 6.5L6.625 12.125L16 0.875" stroke="#8B4BC4" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="col sertif">
+                                            <div class="green mb-1">
+                                                <button>Download</button>
+                                            </div>
+                                            <div>
+                                                <button>Lihat</button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else 
+                                    <div class="col evaluasi">
+                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                            <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                        </svg>
+                                    </div> 
+                                    <div class="col evaluasi">
+                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                            </svg>
+                                    </div>    
+                                    <div class="col sertif">
+                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
+                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
+                                            </svg>
+                                    </div>    
+                                @endif
                             @endif
-
                         </div>
                     @endforeach
 
