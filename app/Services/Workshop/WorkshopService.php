@@ -97,7 +97,7 @@ class WorkshopService
     {
         $checkDate = $this->dateBooked();
 
-        $dateBooked = Workshop::where('date', '>', $checkDate['date_start'])
+        $dateBooked = Workshop::where('date', '>=', $checkDate['date_start'])
             ->where('date', '<=', $checkDate['date_end'])
             ->get()->map->only('date', 'link_id');
 

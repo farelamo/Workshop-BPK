@@ -7,9 +7,10 @@
     <title>Workshop Information</title>
 </head>
 <body>
-    <h2>
+    {{-- <h2>
         Mohon maaf acara workshop {{ $workshop->title }} yang diadakan oleh {{ $creator->fullname }} pada tanggal {{ $workshop->date }}
         dibatalkan karena tidak memenuhi syarat yaitu kurang dari 15 peserta
-    </h2>
+    </h2> --}}
+    <img src="{{ asset('assets/emails/notif-cancel.jpg') }}" alt="" style="min-height: 10%">
 </body>
 </html>
