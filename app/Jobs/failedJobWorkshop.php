@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\failedWorkshop;
 use App\Mail\successWorkshop;
 use App\Models\Workshop;
-use Log;
 
 class failedJobWorkshop implements ShouldQueue
 {
@@ -30,7 +29,6 @@ class failedJobWorkshop implements ShouldQueue
                 foreach ($workshop->users as $user) {
                     array_push($emails, $user->email);
                 }
-                Log::info($emails);
 
                 if($workshop->total_audience > 15){
                     $email = new successWorkshop($workshop);
