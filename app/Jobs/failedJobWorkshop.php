@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\failedWorkshop;
 use App\Mail\successWorkshop;
 use App\Models\Workshop;
+use Log;
 
 class failedJobWorkshop implements ShouldQueue
 {
@@ -22,6 +23,8 @@ class failedJobWorkshop implements ShouldQueue
         $dateNow    = date("Y-m-d");
         $workshops  = Workshop::where('date', $dateNow)->get();
 
+        // Log::info($dateNow);
+        // Log::info($workshops);
         if(count($workshops) > 0){
             foreach($workshops as $workshop){
                 $emails = [];
