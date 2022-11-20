@@ -1,112 +1,146 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Workshop Information</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .card {
+          padding: 50px;
+          background-color: #EFEFEF;
+        }
+        .card h4 {
+          font-weight: 700;
+          text-align: center;
+        }
+        .card img {
+          padding-top: 20px;
+        }
+        .card-body {
+          padding: 50px;
+          margin: 40px;
+          border-radius: 8px;
+          color: #492075;
+        }
+        .card-body h4 {
+          font-weight: 700;
+          text-align: left;
+        }
+        .card-body .icon {
+          margin-top: 20px;
+          margin-right: 15px;
+        }
+        .card-body .info {
+          line-height: 0.6;
+          margin-top: 20px;
+        }
+        .card-body img {
+          height: 60px;
+          width: auto;
+        }
+        @media (max-width: 425px) {
+          .card {
+            padding: 15px;
+          }
+          .card h4 {
+            font-size: 14px;
+          }
+          .card img {
+            padding-top: 5px;
+          }
+          .card-body {
+            padding: 25px;
+            margin: 10px;
+          }
+          .card-body h4 {
+            font-size: 14px;
+          }
+          .card-body .icon {
+            margin-top: 0px;
+            margin-right: 7px;
+          }
+          .card-body .info {
+            line-height: 0.2;
+          }
+          .card-body p, li {
+            font-size: 11px;
+          }
+          .card-body img {
+            margin-top: 10px;
+            height: 45px;
+            width: auto;
+          }
+          .card p {
+            font-size: 10px;
+          }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Workshop Information</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <style>
-    body {
-      font-size: 38pt;
-      font-family: 'Montserrat';
-      font-weight: 800;
-    }
-
-    table {
-      color: #492075
-    }
-
-    table .sub {
-      color: #515151
-    }
-  </style>
-</head>
-
-<body style="background-color: #EFEFEF">
-  <div>
+        }
+      </style>
+  </head>
+  <body>
     <div class="card">
-      <div class="card-body">
-        <h2 class="text-center" style="color: #492075">FORUM WORKSHOP</h2>
-        <img class="" src="{{ asset('assets/emails/gambar.png') }}" style="max-width:100%; height: auto" />
-      </div>
-
-      <div class="card">
-        <div class="card-body" style="background-color: #FFFFFF">
-          <table>
-            <tr>
-              <td>
-                <h4>Judul Workshop</h4>
-              </td>
-              <td>
-                <h4>Jadwal Workshop</h4>
-              </td>
-            </tr>
-            <tr>
-              <td class="pe-5">
-                <h5>
-                  Berteman dikala senja tak menentukan dirinya di phk
-                </h5>
-              </td>
-              <td>
-                <table class="sub">
-                  <tr>
-                    <td>
-                      <h5>Tanggal<h5>
-                    </td>
-                    <td>
-                      <h5 class="px-2">:<h5>
-                    </td>
-                    <td>
-                      <h5>2022-09-11<h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h5>Sesi<h5>
-                    </td>
-                    <td>
-                      <h5 class="px-2">:<h5>
-                    </td>
-                    <td>
-                      <h5>09.00- 12.00<h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h5>Creator<h5>
-                    </td>
-                    <td>
-                      <h5 class="px-2">:<h5>
-                    </td>
-                    <td>
-                      <h5>Fulan bin Fulan<h5>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          <hr style="color: #515151; height: 0.2rem">
-          <div class="py-3">
-            <table>
-              <tr>
-                <td>
-                  <img class="" src="" />
-                </td>
-                <td>
-                  <tr>
-                    <h5>TIKET WORKSHOP</h5>
-                  </tr>
-                </td>
-              </tr>
-            </table>
+      <h4 class="title" style="color: #492075">FORUM WORKSHOP</h4>
+      <img src="{{ asset('assets/emails/gambar.png') }}" style="max-width:100%; height: auto" />
+      <div class="card-body" style="background-color: #FFFFFF">
+        <div class="row">
+          <div class="col">
+            <h4>JUDUL WORKSHOP</h4>
+            <p>Kmoe nanyaaaE</p>
+          </div>
+          <div class="col">
+            <h4>JADWAL WORKSHOP</h4>
+            <div class="info">
+              <p>Tanggal :</p>
+              <p>Sesi    :</p>
+              <p>Kreator :</p>
+            </div>
+          </div>
+        </div>
+        <hr style="color: #515151; height: 0.2rem">
+        <div class="m-4 d-flex flex-row">
+          <div class="icon">
+            <img src="{{ asset('assets/emails/tickets.png') }}" alt="">
+          </div>
+          <div class="ms-3">
+            <h4>TIKET WORKSHOP</h4>
+            <div class="info">
+              <p>Jumlah Tiket :</p>
+              <p>Peranan      :</p>
+            </div>
+          </div>
+        </div>
+        <hr style="color: #515151; height: 0.2rem">
+        <div class="m-4 d-flex flex-row">
+          <div class="icon">
+            <img src="{{ asset('assets/emails/game.png') }}" alt="">
+          </div>
+          <div class="ms-3">
+            <h4>PERATURAN PEMBICARA</h4>
+            <div class="info" style="line-height: 1.2;">
+              <ul>
+                <li>lorem ipsum</li>
+                <li>lorem ipsum</li>
+                <li>lorem ipsum</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr style="color: #515151; height: 0.2rem">
+        <div class="m-4 d-flex flex-row">
+          <div class="icon">
+            <img src="{{ asset('assets/emails/link.png') }}" alt="">
+          </div>
+          <div class="ms-3">
+            <h4>LINK ZOOM WORKSHOP (PEMBICARA)</h4>
+            <div class="info">
+              <p>https://woe-join-sini-anjngg.zoom.com</p>
+            </div>
           </div>
         </div>
       </div>
+      <p style="text-align: center; color: gray;">@2022 BPK Corpo. All Right Reseved</p>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
