@@ -29,4 +29,9 @@ class SpeakerEvaluationController extends Controller
     {
         return $this->service->view($id);
     }
+
+    public function download($id)
+    {
+        return $this->service->download($id);
+    }
 }

@@ -27,6 +27,7 @@ Route::get('workshop/evaluation/speaker', 'Evaluations\SpeakerEvaluationControll
 Route::get('workshop/evaluation/speaker/filter', 'Evaluations\SpeakerEvaluationController@index');
 Route::post('workshop/{id}/speaker', 'Evaluations\SpeakerEvaluationController@store');
 Route::get('workshop/{id}/speaker/view', 'Evaluations\SpeakerEvaluationController@view');
+Route::get('workshop/{id}/speaker/download', 'Evaluations\SpeakerEvaluationController@download');
 
 Route::middleware('auth')->group(function () {
     
