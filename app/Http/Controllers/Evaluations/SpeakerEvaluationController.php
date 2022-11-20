@@ -24,4 +24,9 @@ class SpeakerEvaluationController extends Controller
     {
         return $this->service->store($request, $id);
     }
+
+    public function view($id)
+    {
+        return $this->service->view($id);
+    }
 }

@@ -20,11 +20,13 @@ Route::get('workshops/filter', 'Workshop\WorkshopController@index');
 Route::get('workshop/evaluation/audience', 'Evaluations\AudienceEvaluationController@index');
 Route::get('workshop/evaluation/audience/filter', 'Evaluations\AudienceEvaluationController@index');
 Route::post('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
+Route::get('workshop/{id}/audience/view', 'Evaluations\AudienceEvaluationController@view');
 
 /*** Speaker Evaluation ***/
 Route::get('workshop/evaluation/speaker', 'Evaluations\SpeakerEvaluationController@index');
 Route::get('workshop/evaluation/speaker/filter', 'Evaluations\SpeakerEvaluationController@index');
 Route::post('workshop/{id}/speaker', 'Evaluations\SpeakerEvaluationController@store');
+Route::get('workshop/{id}/speaker/view', 'Evaluations\SpeakerEvaluationController@view');
 
 Route::middleware('auth')->group(function () {
     

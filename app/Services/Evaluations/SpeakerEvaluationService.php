@@ -67,6 +67,14 @@ class SpeakerEvaluationService
             return redirect()->back()->session()->flashInput($request->input());
         }
     }
+
+    public function view($id)
+    {
+        $data       = Auth::user()->speaker_evaluations()
+                                    ->wherePivot('workshop_id', $id)
+                                    ->first();
+        return view('Workshops.Certificate.SpeakerCertificate', compact('data'));
+    }
 }
 
 ?>

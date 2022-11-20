@@ -104,7 +104,9 @@
                                             <button>Download</button>
                                         </div>
                                         <div>
-                                            <button>Lihat</button>
+                                            <a href="/workshop/{{ $evaluation->id }}/speaker/view">
+                                                <button>Lihat</button>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
