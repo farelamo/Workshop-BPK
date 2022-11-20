@@ -1,139 +1,152 @@
 <html lang="en">
   <head>
-    @include('Workshops.Emails.partials.head')
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Workshop Information</title>
     <style>
+        body {
+          font-family: 'Montserrat';
+        }
         .card {
-          padding: 50px;
+          padding: 10px;
           background-color: #EFEFEF;
         }
-        .card h4 {
-          font-weight: 700;
+        .card .row {
+          display: flex;
+        }
+        .card .col {
+          flex: 50%;
+          padding: 10px;
+        }
+        h4 {
           text-align: center;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        p, li {
+          font-size: 7px;
+          font-weight: normal;
+        }
+        .title {
+          margin: 0;
         }
         .card img {
           padding-top: 20px;
         }
         .card-body {
-          padding: 50px;
-          margin: 40px;
+          padding: 10px;
+          margin: 20px 15px;
           border-radius: 8px;
           color: #492075;
         }
         .card-body h4 {
-          font-weight: 700;
           text-align: left;
+          margin: 0;
+          font-size: 10px;
+        }
+        .card-body .judul {
+          margin: 0 0 10px 0;
+        }
+        .card-body .infos {
+          margin: 10px 20px;
         }
         .card-body .icon {
-          margin-top: 20px;
-          margin-right: 15px;
+          margin-right: 20px;
+        }
+        .icon img {
+          padding-top: 0;
         }
         .card-body .info {
           line-height: 0.6;
-          margin-top: 20px;
+          margin-top: 2px;
+        }
+        .card-body ul {
+          padding-left: 14px;
+          margin-top: 0;
         }
         .card-body img {
-          height: 60px;
+          height: 35px;
           width: auto;
         }
-        @media (max-width: 425px) {
-          .card {
-            padding: 15px;
-          }
-          .card h4 {
-            font-size: 14px;
-          }
-          .card img {
-            padding-top: 5px;
-          }
-          .card-body {
-            padding: 25px;
-            margin: 10px;
-          }
-          .card-body h4 {
-            font-size: 14px;
-          }
-          .card-body .icon {
-            margin-top: 0px;
-            margin-right: 7px;
-          }
-          .card-body .info {
-            line-height: 0.2;
-          }
-          .card-body p, li {
-            font-size: 11px;
-          }
-          .card-body img {
-            margin-top: 10px;
-            height: 45px;
-            width: auto;
-          }
-          .card p {
-            font-size: 10px;
-          }
-
+        .quote {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
       </style>
   </head>
+
   <body>
     <div class="card">
-      <h4 class="title" style="color: #492075">FORUM WORKSHOP</h4>
-      <img src="{{ asset('assets/emails/gambar.png') }}" style="max-width:100%; height: auto" />
+      <h4 class="title" style="color: #492075;">FORUM WORKSHOP</h4>
+      <img src="{{ asset('assets/emails/peringatan.png') }}" style="max-width:100%; height: auto" />
       <div class="card-body" style="background-color: #FFFFFF">
-        <div class="row">
-          <div class="col">
-            <h4>JUDUL WORKSHOP</h4>
-            <p>Kmoe nanyaaaE</p>
-          </div>
-          <div class="col">
-            <h4>JADWAL WORKSHOP</h4>
-            <div class="info">
-              <p>Tanggal :</p>
-              <p>Sesi    :</p>
-              <p>Kreator :</p>
+        <div class="judl">
+            <div class="row">
+              <div class="col">
+                <h4>JUDUL WORKSHOP</h4>
+                <p>Kmoe nanyaaaE</p>
+              </div>
+              <div class="col">
+                <h4>JADWAL WORKSHOP</h4>
+                <div class="info">
+                  <p>Tanggal :</p>
+                  <p>Sesi    :</p>
+                  <p>Kreator :</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <hr style="color: #515151; height: 0.2rem">
+        <div class="infos">
+          <div class="row">
+            <div class="icon">
+              <img src="{{ asset('assets/emails/tickets.png') }}" alt="">
+            </div>
+            <div class="">
+              <h4>TIKET WORKSHOP</h4>
+              <div class="info">
+                <p>Jumlah Tiket :</p>
+                <p>Peranan      :</p>
+              </div>
             </div>
           </div>
         </div>
         <hr style="color: #515151; height: 0.2rem">
-        <div class="m-4 d-flex flex-row">
-          <div class="icon">
-            <img src="{{ asset('assets/emails/tickets.png') }}" alt="">
-          </div>
-          <div class="ms-3">
-            <h4>TIKET WORKSHOP</h4>
-            <div class="info">
-              <p>Jumlah Tiket :</p>
-              <p>Peranan      :</p>
+        <div class="infos">
+          <div class="row">
+            <div class="icon">
+              <img src="{{ asset('assets/emails/game.png') }}" alt="">
+            </div>
+            <div class="">
+              <h4>PERATURAN PEMBICARA</h4>
+              <div class="info" style="line-height: 1.2;">
+                <ul>
+                  <li>lorem ipsum</li>
+                  <li>lorem ipsum</li>
+                  <li>lorem ipsum</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <hr style="color: #515151; height: 0.2rem">
-        <div class="m-4 d-flex flex-row">
-          <div class="icon">
-            <img src="{{ asset('assets/emails/game.png') }}" alt="">
-          </div>
-          <div class="ms-3">
-            <h4>PERATURAN PEMBICARA</h4>
-            <div class="info" style="line-height: 1.2;">
-              <ul>
-                <li>lorem ipsum</li>
-                <li>lorem ipsum</li>
-                <li>lorem ipsum</li>
-              </ul>
+        <div class="infos">
+          <div class="row">
+            <div class="icon">
+              <img src="{{ asset('assets/emails/link.png') }}" alt="">
+            </div>
+            <div class="">
+              <h4>LINK ZOOM WORKSHOP (PEMBICARA)</h4>
+              <div class="info">
+                <p>https://woe-join-sini-anjngg.zoom.com</p>
+              </div>
             </div>
           </div>
         </div>
-        <hr style="color: #515151; height: 0.2rem">
-        <div class="m-4 d-flex flex-row">
-          <div class="icon">
-            <img src="{{ asset('assets/emails/link.png') }}" alt="">
-          </div>
-          <div class="ms-3">
-            <h4>LINK ZOOM WORKSHOP (PEMBICARA)</h4>
-            <div class="info">
-              <p>https://woe-join-sini-anjngg.zoom.com</p>
-            </div>
-          </div>
+        <div class="quote">
+          <img src="{{ asset('assets/emails/TEXT NOTIF H-1.jpg') }}" class="quote" alt="">
         </div>
       </div>
       <p style="text-align: center; color: gray;">@2022 BPK Corpo. All Right Reseved</p>
