@@ -35,9 +35,9 @@
             right: 42%
         }
 
-        .pembicara {
+        .peserta {
             top: 50vh;
-            right: 43%
+            right: 45%
         }
 
         .title {
@@ -88,7 +88,7 @@
                 <h1>{{ Auth::user()->fullname }}</h1>
                 <p class="pt-3 nip">NIP : {{ Auth::user()->NIP }}</p>
                 <p class="participate">Yang telah berpatisipasi sebagai</p>
-                <h1 class="pt-5 pembicara">Peserta</h1>
+                <h1 class="pt-5 peserta">Peserta</h1>
                 <h3 class="title pt-4">Workshop {{ $data->title }} dengan metode <i>Distance Learning</i></h3>
                 <p class="event pt-3">yang diselenggarakan di Jakarta pada tanggal {{ $data->date }}</p>
                 <h5 class="date pt-3">Jakarta, {{ \Carbon\Carbon::now()->format('d F Y') }}</h5>
