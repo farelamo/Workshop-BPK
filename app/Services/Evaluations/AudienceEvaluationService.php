@@ -68,6 +68,14 @@ class AudienceEvaluationService
             return redirect()->back()->withInput();
         }
     }
+
+    public function view($id)
+    {
+        $data       = Auth::user()->audience_evaluations()
+                                    ->wherePivot('workshop_id', $id)
+                                    ->first();
+        return view('Workshops.Certificate.AudienceCertificate', compact('data'));
+    }
 }
 
 ?>

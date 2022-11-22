@@ -101,10 +101,14 @@
                                     </div>
                                     <div class="col sertif">
                                         <div class="green mb-1">
-                                            <button>Download</button>
+                                            <a href="/workshop/{{ $evaluation->id }}/speaker/download">
+                                                <button>Download</button>
+                                            </a>
                                         </div>
                                         <div>
-                                            <button>Lihat</button>
+                                            <a href="/workshop/{{ $evaluation->id }}/speaker/view">
+                                                <button>Lihat</button>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
