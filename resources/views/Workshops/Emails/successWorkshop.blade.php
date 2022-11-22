@@ -43,7 +43,7 @@
         .card-body h4 {
           text-align: left;
           margin: 0;
-          font-size: 10px;
+          font-size: 8px;
         }
         .card-body .judul {
           margin: 0 0 10px 0;
@@ -73,6 +73,40 @@
           display: block;
           margin-left: auto;
           margin-right: auto;
+        }
+        @media only screen and (min-width: 600px) {
+            .card {
+            padding: 10px;
+            background-color: #EFEFEF;
+            }
+            .card .row {
+            display: flex;
+            }
+            .card .col {
+            flex: 50%;
+            padding: 10px;
+            }
+            h4 {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            }
+            p, li {
+            font-size: 10px;
+            font-weight: normal;
+            }
+            .card-body h4 {
+            text-align: left;
+            margin: 0;
+            font-size: 14px;
+            }
+            .card-body img {
+            height: 40px;
+            width: auto;
+            }
+            .icon img {
+            padding-top: 10px;
+            }
         }
       </style>
   </head>
