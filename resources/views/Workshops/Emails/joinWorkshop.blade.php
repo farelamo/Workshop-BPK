@@ -114,6 +114,9 @@
           .icon img {
             padding-top: 10px;
           }
+          .attention p {
+            font-size: 14px;
+          }
         }
     </style>
 </head>
