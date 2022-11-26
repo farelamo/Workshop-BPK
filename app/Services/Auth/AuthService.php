@@ -24,7 +24,9 @@ class AuthService
             
             $data       = $response->getRaw()['info'];
 
-            $user       = User::updateOrCreate([
+            $user       = User::updateOrCreate(
+            ['NIP' => $data['NIP']],
+            [
                 'fullname'  => $data['NamaLengkap'],
                 'NIP'       => $data['NIP'],
                 'new_NIP'   => $data['NIPBaru'],
