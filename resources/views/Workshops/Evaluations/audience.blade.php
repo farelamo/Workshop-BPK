@@ -19,22 +19,22 @@
                     
                     <div class="upper my-1 w-100 d-flex justify-content-between">
                         <div>
-                            <button class="me-1" value="{{ old('sortTitle') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortTitle">
+                            <button class="me-1" value="{{ $fsearch ? !is_null($fsearch['sortTitle']) ? $fsearch['sortTitle'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortTitle">
                                 Judul Workshop
-                                @if ( old('sortTitle') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @if ($fsearch ? !is_null($fsearch['sortTitle']) ? $fsearch['sortTitle'] == 'DESC' : 'DESC' : 'DESC') <i class="fa fa-arrow-up"></i> 
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
 
-                            <button class="me-1" value="{{ old('sortSchedule') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortSchedule">
-                                Jadwal Workshop
-                                @if ( old('sortSchedule') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                            <button class="me-1" value="{{ $fsearch ? !is_null( $fsearch['sortSchedule']) ? $fsearch['sortSchedule'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortSchedule">
+                                Jumlah Peserta
+                                @if ($fsearch ? !is_null($fsearch['sortSchedule']) ? $fsearch['sortSchedule'] == 'DESC' : 'DESC' : '') <i class="fa fa-arrow-up"></i> 
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
                         </div>
-                        <div class="Search">
-                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{ old('title') }}">
+                        <div class="search">
+                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{  $fsearch ? !is_null($fsearch['title']) ? $fsearch['title'] : '' : '' }}">
                         </div>
                     </div>
                 </form>
@@ -70,6 +70,7 @@
                             @php
                                $dateNow    = date('Y-m-d', strtotime("+1 day", strtotime(date('Y-m-d'))));
                                $dateEval   = date('Y-m-d', strtotime($evaluation->date));
+                            //    dd(old());
                             @endphp
 
                             @if ($evaluation->cancelled === 'yes')
@@ -195,7 +196,7 @@
 
                         <div class="mt-2">
                             <p>Pembaharuan yang diperoleh</p>
-                            <textarea type="text" name="received">{{ old('received') }}</textarea>
+                            <textarea name="received">{{ old('received') }}</textarea>
                             @error('received')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -214,9 +215,12 @@
                                 <p>Penilaian</p>
                             </div>
                         </div>
+                        <div>
+                            <input type="text" id="fdata" name="fId" value="{{ old('fId') }}" hidden>
+                        </div>
                         <div class="">
                             <p>Saran perbaikan untuk pembicara</p>
-                            <textarea type="text" name="speaker_suggestion">{{ old('speaker_suggestion') }}</textarea>
+                            <textarea name="speaker_suggestion">{{ old('speaker_suggestion') }}</textarea>
                             @error('speaker_suggestion')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -237,7 +241,7 @@
                         </div>
                         <div class="">
                             <p>Saran perbaikan untuk acara</p>
-                            <textarea type="text" name="event_suggestion">{{ old('event_suggestion') }}</textarea>
+                            <textarea name="event_suggestion">{{ old('event_suggestion') }}</textarea>
                             @error('event_suggestion')
                                 <div class="error">*{{ $message }}</div>
                             @enderror
@@ -279,7 +283,7 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $('#audience').modal('show');
-                //pake swal $messagenya
+                document.getElementById('formAudience').action = `/workshop/${document.getElementById('fdata').value}/audience`;
             });
         </script>
     @endif
@@ -287,6 +291,7 @@
     <script>
         function audience(id) {
             document.getElementById('formAudience').action = `/workshop/${id}/audience/`;
+            document.getElementById('fdata').value         = id
         }
     </script>
 @endsection

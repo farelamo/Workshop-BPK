@@ -3,6 +3,7 @@
 namespace App\Services\Evaluations;
 
 use Alert;
+use Session;
 use Exception;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
@@ -37,13 +38,22 @@ class AudienceEvaluationService
             $request->input('sortSchedule')
         );
         
-        session()->flashInput($request->input());
+        session()->put('fsearch', [
+            'title'         => $request->input('title'),
+            'sortTitle'     => $request->input('sortTitle'),
+            'sortSchedule'  => $request->input('sortSchedule')
+        ]);
+
+        if(Session::has('fsearch')){
+            $fsearch = Session::get('fsearch');
+            return view('Workshops.Evaluations.audience', compact('evaluations', 'fsearch'));
+        }
+
         return view('Workshops.Evaluations.audience', compact('evaluations'));
     }
 
     public function store(AudienceRequest $request, $id){
         try {
-
             $data   = Auth::user()->audience_evaluations()
                                     ->wherePivot('workshop_id', $id)
                                     ->first();

@@ -9,6 +9,7 @@ use App\Traits\DownloadImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Session;
 use PDF;
 use Log;
 
@@ -41,11 +42,21 @@ class SpeakerEvaluationService
             $request->input('sortSchedule')
         );
 
-        session()->flashInput($request->input());
+        session()->put('search', [
+            'title'         => $request->input('title'),
+            'sortTitle'     => $request->input('sortTitle'),
+            'sortSchedule'  => $request->input('sortSchedule')
+        ]);
+
+        if(Session::has('search')){
+            $search = Session::get('search');
+            return view('Workshops.Evaluations.speaker', compact('evaluations', 'search'));
+        }
         return view('Workshops.Evaluations.speaker', compact('evaluations'));
     }
     public function store(SpeakerRequest $request, $id)
     {
+        
         try {
 
             $data = Auth::user()->speaker_evaluations()

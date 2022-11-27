@@ -19,22 +19,22 @@
                     
                     <div class="upper my-1 w-100 d-flex justify-content-between">
                         <div>
-                            <button class="me-1" value="{{ old('sortTitle') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortTitle">
+                            <button class="me-1" value="{{ $search ? !is_null($search['sortTitle']) ? $search['sortTitle'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortTitle">
                                 Judul Workshop
-                                @if ( old('sortTitle') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @if ($search ? !is_null($search['sortTitle']) ? $search['sortTitle'] == 'DESC' : 'DESC' : 'DESC') <i class="fa fa-arrow-up"></i> 
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
 
-                            <button class="me-1" value="{{ old('sortSchedule') == 'DESC' ? 'ASC' : 'DESC'}}" name="sortSchedule">
+                            <button class="me-1" value="{{ $search ? !is_null( $search['sortSchedule']) ? $search['sortSchedule'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortSchedule">
                                 Jumlah Peserta
-                                @if ( old('sortSchedule') == 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @if ($search ? !is_null($search['sortSchedule']) ? $search['sortSchedule'] == 'DESC' : 'DESC' : '') <i class="fa fa-arrow-up"></i> 
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
                         </div>
                         <div class="search">
-                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{ old('title') }}">
+                            <input name="title" class="align-self-end" placeholder="Cari Judul" value="{{  $search ? !is_null($search['title']) ? $search['title'] : '' : '' }}">
                         </div>
                     </div>
                 </form>
@@ -220,6 +220,9 @@
                             </div>
                         </div>
                         <div>
+                            <input type="text" id="data" name="eId" value="{{ old('eId') }}" hidden>
+                        </div>
+                        <div>
                             <p>Usulan perbaikan penyelenggaraan</p>
                             <textarea type="text" name="event_suggestion">{{ old('event_suggestion') }}</textarea>
                             @error('event_suggestion')
@@ -241,6 +244,7 @@
                             </div>
                         </div>
                         <div>
+                            <h5>{{ old('sortTitle') }}</h5>
                             <p>Upload update materi anda (Dalam bentuk PDF)</p>
                             <input type="file" name="file">
                             @error('file')
@@ -263,6 +267,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#speaker').modal('show');
+                document.getElementById('formSpeaker').action = `/workshop/${document.getElementById('data').value}/speaker`;
             });
         </script>
     @endif
@@ -270,6 +275,7 @@
     <script>
         function speaker(id) {
             document.getElementById('formSpeaker').action = `/workshop/${id}/speaker`;
+            document.getElementById('data').value         = id
         }
     </script>
 @endsection
