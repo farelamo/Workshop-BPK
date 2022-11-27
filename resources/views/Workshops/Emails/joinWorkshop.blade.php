@@ -130,14 +130,14 @@
               <div class="row">
                 <div class="col">
                   <h4>JUDUL WORKSHOP</h4>
-                  <p>Kmoe nanyaaaE</p>
+                  <p>{{ $workshop->title }}</p>
                 </div>
                 <div class="col">
                   <h4>JADWAL WORKSHOP</h4>
                   <div class="info">
-                    <p>Tanggal :</p>
-                    <p>Sesi    :</p>
-                    <p>Kreator :</p>
+                    <p>Tanggal : {{ $workshop->date }}</p>
+                    <p>Sesi    : {{ $workshop->link_id == 1 ? '09.00 - 12.00' : '15.00 - 17.00'}}</p>
+                    <p>Peserta : {{ $user['fullname'] }}</p>
                   </div>
                 </div>
               </div>
@@ -151,8 +151,8 @@
                 <div class="">
                   <h4>TIKET WORKSHOP</h4>
                   <div class="info">
-                    <p>Jumlah Tiket :</p>
-                    <p>Peranan      :</p>
+                    <p>Jumlah Tiket : 1 (Satu)</p>
+                    <p>Peranan      : Audience / Peserta</p>
                   </div>
                 </div>
               </div>
@@ -164,12 +164,12 @@
                   <img src="{{ asset('assets/emails/game.png') }}" alt="">
                 </div>
                 <div class="">
-                  <h4>PERATURAN PEMBICARA</h4>
+                  <h4>PERATURAN PESERTA</h4>
                   <div class="info" style="line-height: 1.2;">
                     <ul>
-                      <li>lorem ipsum</li>
-                      <li>lorem ipsum</li>
-                      <li>lorem ipsum</li>
+                      <li>Peserta wajib bertanggung jawab atas workshop yang didaftarkan.</li>
+                      <li>Peserta wajib hadir 15 menit sebelum acara dimulai.</li>
+                      <li>Peserta wajib mengikuti kegiatan hingga selesai.</li>
                     </ul>
                   </div>
                 </div>

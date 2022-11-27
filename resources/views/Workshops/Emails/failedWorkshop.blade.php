@@ -18,10 +18,6 @@
     </style>
 </head>
 <body>
-    {{-- <h2>
-        Mohon maaf acara workshop {{ $workshop->title }} yang diadakan oleh {{ $creator->fullname }} pada tanggal {{ $workshop->date }}
-        dibatalkan karena tidak memenuhi syarat yaitu kurang dari 15 peserta
-    </h2> --}}
     <div class="container">
         <div class="card">
             <div class="card-body">

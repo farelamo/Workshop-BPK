@@ -10,7 +10,6 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
         $schedule->job(new failedJobWorkshop())->everyMinute();
         // $schedule->job(new failedJobWorkshop())->dailyAt('22:12')->timezone('Asia/Jakarta');
     }

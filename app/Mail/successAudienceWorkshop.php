@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class successWorkshop extends Mailable
+class successAudienceWorkshop extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -22,6 +22,6 @@ class successWorkshop extends Mailable
     {
         $workshop = $this->workshop;
         $creator  = $workshop->users()->wherePivot('role', 'speaker')->first();
-        return $this->view('Workshops.Emails.successWorkshop', compact('workshop', 'creator'))->subject('[BPK] - Workshop H-1 Information');
+        return $this->view('Workshops.Emails.successAudienceWorkshop', compact('workshop', 'creator'))->subject('[BPK] - Workshop H-1 Information');
     }
 }
