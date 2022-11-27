@@ -68,8 +68,8 @@
                             </div>
                             
                             @php
-                                $dateNow    = date("Y-m-d");
-                                $dateEval   = date('Y-m-d', strtotime("+1 day", strtotime($evaluation->date)));
+                               $dateNow    = date('Y-m-d', strtotime("+1 day", strtotime(date('Y-m-d'))));
+                               $dateEval   = date('Y-m-d', strtotime($evaluation->date));
                             @endphp
 
                             @if ($evaluation->cancelled === 'yes')
