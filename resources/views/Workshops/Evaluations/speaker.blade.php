@@ -71,8 +71,8 @@
                             </div>
 
                             @php
-                                $dateNow    = date("Y-m-d");
-                                $dateEval   = date('Y-m-d', strtotime("+1 day", strtotime($evaluation->date)));
+                                $dateNow    = date('Y-m-d', strtotime("+1 day", strtotime(date('Y-m-d'))));
+                                $dateEval   = date('Y-m-d', strtotime($evaluation->date));
                             @endphp
 
                             @if ($dateNow >= $dateEval)
@@ -114,6 +114,8 @@
                                 @endif
                             @else 
                                 <div class="col evaluasi">
+                                    <h5>{{ $dateNow }}</h5>
+                                        <h5>{{ $dateEval }}</h5>
                                     <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
