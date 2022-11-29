@@ -59,7 +59,7 @@
             <h4>PESERTA</h4>
             <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and fashion axe.</p>
             <div class="text-button">
-              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+              <a href="#">Lihat detail <i class="fa fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
             <h4>PEMBICARA</h4>
             <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and fashion axe.</p>
             <div class="text-button">
-              <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+              <a href="#">Lihat Detail <i class="fa fa-arrow-right"></i></a>
             </div>
           </div>
         </div>

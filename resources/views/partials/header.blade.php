@@ -18,7 +18,7 @@
                         </li>
                         <li>
                             <a href="/workshop" class="{{ Request::is('workshop') ? 'active' : '' }}">
-                                Tabel Wokrshop
+                                Tabel Workshop
                             </a>
                         </li>
                         <li>

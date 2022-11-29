@@ -47,7 +47,7 @@
                             <p>Jadwal Workshop</p>
                         </div>
                         <div class="col">
-                            <p>Cancel</p>
+                            <p>Batal</p>
                         </div>
                         <div class="col">
                             <p>Evaluasi</p>

@@ -50,7 +50,7 @@
                             <p>Jumlah Peserta</p>
                         </div>
                         <div class="col">
-                            <p>Cancelled</p>
+                            <p>Batal</p>
                         </div>
                         <div class="col">
                             <p>Evaluasi</p>
