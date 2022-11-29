@@ -60,7 +60,7 @@ class WorkshopService
                     return $query->where('link_id', $link);
                 });
                 
-        return $data->orderBy('id','desc')->paginate(5)->withQueryString();
+        return $data->orderBy('date','desc')->paginate(5)->withQueryString();
     }
 
     public function index(Request $request)
