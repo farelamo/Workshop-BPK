@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-6 ms-n3">
                             <div class="right-image wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-                                <h4>Create Workshop</h4>
+                                <h4>Buat Workshop</h4>
                                 <p>Mari membuat <span>wadah</span> yang dapat membahas topik tertentu dimana para peserta
                                     bebas mengutarakan <span>pendapat</span> atau <span>ilmu</span> yang kita miliki sebagai
                                     bahan diskusi.</p>
@@ -24,7 +24,7 @@
                                     <div class="creates col-lg-12">
                                         <div class="section-heading  wow fadeInDown" data-wow-duration="1s"
                                             data-wow-delay="0.5s">
-                                            <h4>Create Workshop</h4>
+                                            <h4>Buat Workshop</h4>
                                         </div>
 
                                         <form action="/workshop" method="POST" enctype="multipart/form-data">

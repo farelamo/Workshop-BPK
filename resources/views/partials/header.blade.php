@@ -13,17 +13,17 @@
                     <ul class="nav">
                         <li>
                             <a href="/" class="{{ Request::is('') ? 'active' : '' }}">
-                                Home
+                                Beranda
                             </a>
                         </li>
                         <li>
                             <a href="/workshop" class="{{ Request::is('workshop') ? 'active' : '' }}">
-                                List Workshop
+                                Tabel Wokrshop
                             </a>
                         </li>
                         <li>
                             <a href="/workshop/create" class="{{ Request::is('workshop/create') ? 'active' : '' }}">
-                                Create Workshop
+                                Buat Workshop
                             </a>
                         </li>
                         @if (!Auth::user())
@@ -31,7 +31,7 @@
                                 <div class="border-button">
                                     <a href="/login">
                                         <i class="fa fa-sign-in-alt"></i>
-                                        Login with SSO
+                                        Login dengan SSO
                                     </a>
                                 </div>
                             </li>

@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>About Us</h4>
+            <h4>Tentang Kami</h4>
             <ul>
               <li><a href="#">Lorem Ipsum</a></li>
               <li><a href="#">Lorem Ipsum</a></li>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>List Workshop</h4>
+            <h4>Tabel Workshop</h4>
             <ul>
               <li><a href="#">Lorem Ipsum</a></li>
               <li><a href="#">Lorem Ipsum</a></li>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg-3">
           <div class="footer-widget">
-            <h4>Contact</h4>
+            <h4>Hubungi Kami</h4>
             <ul>
               <li><a href="#">Lorem Ipsum</a></li>
               <li><a href="#">Lorem Ipsum</a></li>

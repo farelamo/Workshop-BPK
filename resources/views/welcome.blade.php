@@ -17,8 +17,8 @@
                   </div>
                   <div class="col-lg-12">
                     <form>
-                      <input placeholder="Enter Your Email" />
-                      <button>Subscribe Now</button>
+                      <input placeholder="Masukkan email anda" />
+                      <button>Ikuti Sekarang</button>
                     </form>
                   </div>
                 </div>
