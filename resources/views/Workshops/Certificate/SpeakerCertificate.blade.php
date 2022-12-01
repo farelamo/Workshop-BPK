@@ -10,71 +10,53 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <style>
-        p, h1, h3, h5{
-            top: 39vh;
+        p, h1, h2, h3, h4, h5{
+            top: 320px;
             position: absolute;
             color: red;
+
+        }
+        
+        .center-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
         }
 
-        h1 {
-            top: 42vh;
-            right: 40%;
-        }
-
-        p {
-            right: 45%;
-        }
-
-        .nip {
-            top: 48vh;
+         .nip {
+            top: 395px;
             font-weight: bold
         }
-
-        .participate {
-            top: 52.5vh;
-            right: 42%
+         .participate {
+            top: 420px;
         }
-
-        .pembicara {
-            top: 50vh;
-            right: 43%
+         .pembicara {
+            top: 440px;
         }
-
         .title {
-            top: 58vh;
-            right: 15%;
+            top: 475px;
             font-weight: bold
         }
-
         .event {
-            top: 62.5vh;
-            right: 35%;
+            top: 510px;
         }
-
         .date {
-            top: 66vh;
-            right: 40%;
+            top: 535px;
         }
-
         .bpk {
-            top: 71vh;
-            right: 41%;
+            top: 565px;
         }
-
         .jabatan {
-            top: 73vh;
-            right: 34%;
+            top: 585px;
         }
-
         .name {
-            top: 80vh;
-            right: 41%;
+            top: 680px;
             font-weight: bold
         }
-
         .kepala {
-            top: 82vh;
-            right: 43%;
+            top: 700px;
             font-weight: bold
         }
     </style>
@@ -83,21 +65,23 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <img class="position-relative justify-content-center w-100 h-100" src="{{ asset('assets/certificate/background-sertif.png')}}" alt="bg-sertif">
-                <p class="pb-2">Diberikan Kepada :</p>
-                <h1>{{ Auth::user()->fullname }}</h1>
-                <p class="pt-3 nip">NIP : {{ Auth::user()->NIP }}</p>
-                <p class="participate">Yang telah berpatisipasi sebagai</p>
-                <h1 class="pt-5 pembicara">Pembicara</h1>
-                <h3 class="title pt-4">Workshop {{ $data->title }} dengan metode <i>Distance Learning</i></h3>
-                <p class="event pt-3">yang diselenggarakan di Jakarta pada tanggal {{ $data->date }}</p>
-                <h5 class="date pt-3">Jakarta, {{ \Carbon\Carbon::now()->format('d F Y') }}</h5>
-                <p class="bpk">BADAN PEMERIKSA KEUANGAN</p>
-                <p class="jabatan">Kepala Pusat Perencanaan dan Penyelenggaraan Diklat PKN</p>
-                <p class="name">Dali Mulkana S.E., M.Sc., Ak., CSFA</p>
-                <p class="kepala">NIP 196810101989031003</p>
+                <img class="w-100 h-100" src="{{ asset('assets/certificate/background-sertif.png')}}" alt="bg-sertif">
+                <div class="center-screen">
+                    <p>Diberikan Kepada :</p>
+                    <h1 class="mt-4">{{ Auth::user()->fullname }}</h1>
+                    <p class="nip">NIP : {{ Auth::user()->NIP }}</p>
+                    <p class="participate">Yang telah berpatisipasi sebagai</p>
+                    <h3 class="pembicara">Pembicara</h3>
+                    <h4 class="title">Workshop {{ $data->title }} dengan metode <i>Distance Learning</i></h4>
+                    <p class="event">yang diselenggarakan di Jakarta pada tanggal {{ $data->date }}</p>
+                    <h5 class="date">Jakarta, {{ \Carbon\Carbon::now()->format('d F Y') }}</h5>
+                    <p class="bpk">BADAN PEMERIKSA KEUANGAN</p>
+                    <p class="jabatan">Kepala Pusat Perencanaan dan Penyelenggaraan Diklat PKN</p>
+                    <p class="name">Dali Mulkana S.E., M.Sc., Ak., CSFA</p>
+                    <p class="kepala">NIP 196810101989031003</p>
+                </div>
             </div>
-        </div>        
+        </div>
     </div>
 </body>
 </html>
