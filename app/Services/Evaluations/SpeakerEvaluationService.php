@@ -98,7 +98,7 @@ class SpeakerEvaluationService
             ->first();
 
         $background = $this->base_image('assets/certificate/background-sertif.png');
-        return view('Workshops.Download.SpeakerCertificate', compact('data', 'background'));
+        // return view('Workshops.Download.SpeakerCertificate', compact('data', 'background'));
         $pdf = PDF::loadview('Workshops.Download.SpeakerCertificate', compact('data', 'background'));
         $pdf->setPaper('F4', 'landscape');
         $pdf->render();

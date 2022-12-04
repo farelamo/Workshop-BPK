@@ -12,11 +12,15 @@
         p,
         h1,
         h3,
-        h5 {
-            top: 350px;
+        h6 {
+            top: 280px;
             position: absolute;
             color: red;
             /* text-rendering: geometricPrecision; */
+        }
+        p, h1 {
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .center-screen {
@@ -28,48 +32,68 @@
         }
 
         .nip {
-            top: 425px;
+            top: 345px;
             /* left: 400px; */
-            font-weight: bold
+            font-weight: bold;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .participate {
-            top: 450px;
+            top: 370px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .pembicara {
-            top: 470px;
+            top: 390px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .title {
-            top: 520px;
-            font-weight: bold
+            top: 440px;
+            font-weight: bold;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .event {
-            top: 560px;
+            top: 480px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .date {
-            top: 590px;
+            top: 500px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .bpk {
-            top: 620px;
+            top: 520px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .jabatan {
-            top: 640px;
+            top: 540px;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .name {
-            top: 730px;
-            font-weight: bold
+            top: 635px;
+            font-weight: bold;
+            left: 50%;
+            transform: -translateX(-50%);
         }
 
         .kepala {
-            top: 750px;
-            font-weight: bold
+            top: 655px;
+            font-weight: bold;
+            left: 50%;
+            transform: -translateX(-50%);
         }
     </style>
 </head>
@@ -84,7 +108,7 @@
         <h1 class="pembicara">Pembicara</h1>
         <h3 class="title">Workshop {{ $data->title }} dengan metode <i>Distance Learning</i></h3>
         <p class="event">yang diselenggarakan di Jakarta pada tanggal {{ $data->date }}</p>
-        <h5 class="date">Jakarta, {{ \Carbon\Carbon::now()->format('d F Y') }}</h5>
+        <h6 class="date">Jakarta, {{ \Carbon\Carbon::now()->format('d F Y') }}</h6>
         <p class="bpk">BADAN PEMERIKSA KEUANGAN</p>
         <p class="jabatan">Kepala Pusat Perencanaan dan Penyelenggaraan Diklat PKN</p>
         <p class="name">Dali Mulkana S.E., M.Sc., Ak., CSFA</p>
