@@ -84,7 +84,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="popupContainerLarge" id="audience">
+                        <div class="popupContainerLarge" id="audience" style="display:none;">
                             <div class="row popupHeaderlarge">
                               <div class="col">
                                 <h5>Nama Peserta Terdaftar</h5>
