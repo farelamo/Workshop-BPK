@@ -15,15 +15,15 @@ Table of contents
 12. portfolio
 
 --------------------------------------------- */
-/* 
+/*
 ---------------------------------------------
 font & reset css
---------------------------------------------- 
+---------------------------------------------
 */
-/* 
+/*
 ---------------------------------------------
 reset
---------------------------------------------- 
+---------------------------------------------
 */
 html,
 body,
@@ -88,6 +88,27 @@ figcaption {
     border: 0;
     outline: 0;
 }
+
+button {
+    display: inline-block !important;
+    padding: 10px 20px !important;
+    text-transform: capitalize;
+    font-size: 15px;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    transition: all .5s;
+  }
+  .btn-primary {
+    background-color: rgba(77, 64, 118, 1);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background-color: #fff;
+    border: 1px solid rgba(77, 64, 118, 1);
+    color: black;
+  }
 
 /* clear fix */
 .grid:after {
@@ -194,10 +215,10 @@ img {
     overflow: hidden;
 }
 
-/* 
+/*
 ---------------------------------------------
 global styles
---------------------------------------------- 
+---------------------------------------------
 */
 html,
 body {
@@ -329,6 +350,7 @@ body {
     font-weight: 500 !important;
     letter-spacing: 0.3px !important;
     transition: all .5s;
+    cursor: pointer;
 }
 
 .border-button a:hover {
@@ -338,10 +360,10 @@ body {
 }
 
 
-/* 
+/*
 ---------------------------------------------
 header
---------------------------------------------- 
+---------------------------------------------
 */
 
 .background-header {
@@ -959,10 +981,10 @@ header
     }
 }
 
-/* 
+/*
 ---------------------------------------------
 preloader
---------------------------------------------- 
+---------------------------------------------
 */
 
 .js-preloader {
@@ -1061,10 +1083,10 @@ preloader
 
 
 
-/* 
+/*
 ---------------------------------------------
 Banner Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .main-banner {
@@ -1331,10 +1353,10 @@ Banner Style
     color: #fff !important;
 }
 
-/* 
+/*
 ---------------------------------------------
 Services Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .services {
@@ -1819,10 +1841,10 @@ About Us
     z-index: 0;
 }
 
-/* 
+/*
 ---------------------------------------------
 Footer Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 footer {
@@ -1984,12 +2006,22 @@ PopUp
     margin: 10px;
 }
 
+.popupContainerLarge {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    left: 45%;
+    top: 60px;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 30px;
+}
+
 .popupHeader {
     position: relative;
     padding: 10px 20px;
     font-weight: bold;
     font-size: 24px;
-    text-transform: uppercase;
     text-align: center;
     color: rgba(151, 93, 202, 1);
 }
@@ -2001,6 +2033,16 @@ PopUp
     font-size: 30px;
     text-transform: uppercase;
     text-align: center;
+    color: rgba(151, 93, 202, 1);
+}
+
+.popupHeaderlarge {
+    position: relative;
+    padding: 10px 20px 0 20px;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: left;
     color: rgba(151, 93, 202, 1);
 }
 
@@ -2020,6 +2062,11 @@ PopUp
 }
 
 .popupBodyReg {
+    padding: 0 20px 30px 20px;
+}
+
+.popupBodyLarge {
+    margin-top: 20px;
     padding: 0 20px 30px 20px;
 }
 
@@ -2050,6 +2097,12 @@ PopUp
     font-size: 14;
     font-weight: bold;
     color: black;
+}
+
+.popupBodyLarge p {
+    font-size: 14;
+    font-weight: normal;
+    color:black;
 }
 
 .popupBodyReg p {
@@ -2319,10 +2372,10 @@ a.btn_red {
 
 
 
-/* 
+/*
 ---------------------------------------------
 responsive
---------------------------------------------- 
+---------------------------------------------
 */
 
 

@@ -8,7 +8,7 @@
             <div class="col-lg-12">
 
                 @include('partials.filter')
-                
+
                 <div class="listworkshop">
                     @foreach ($workshops as $workshop)
                         <div class="row m-4">
@@ -19,7 +19,7 @@
                                 <h4>{{ $workshop->title }}</h4>
                                 <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and
                                     fashion axe.</p>
-                                <p>
+                                <p class="fw-bold text-dark text-opacity-75">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <rect x="2.5" y="6.25" width="2.5" height="2.5" fill="#5D5D5D" />
@@ -39,7 +39,7 @@
                                     </svg>
                                     {{ $workshop->date }}
                                 </p>
-                                <p>
+                                <p class="fw-bold text-dark text-opacity-75">
                                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8.5 4V9.5L6.5 13.5" stroke="#5D5D5D" stroke-width="2" />
@@ -48,18 +48,18 @@
                                     </svg>
                                     @if ( $workshop->link_id == 1)
                                         09.00 - 12.00
-                                    @else 
+                                    @else
                                         15.00 - 17.00
                                     @endif
                                 </p>
-                                <p>
+                                <p class="fw-bold text-dark text-opacity-75">
                                     <i class="fa fa-user"></i>
                                     {{ $workshop->users()->wherePivot('role', 'speaker')->first()->fullname }}
                                 </p>
                                 <div class="row mt-3">
                                     <div class="col-lg-8">
                                         <div class="item">
-                                            <p>Kegiatan ini telah terdaftar sebanyak {{ $workshop->total_audience }} audience</p>
+                                            <p class="fw-bold text-dark text-opacity-75">Kegiatan ini telah terdaftar sebanyak {{ $workshop->total_audience }} audience</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
