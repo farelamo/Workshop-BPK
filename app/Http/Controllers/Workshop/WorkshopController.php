@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Workshop\WorkshopService;
 use App\Http\Requests\Workshop\WorkshopRequest;
+use App\Http\Requests\Workshop\WorkshopEditRequest;
 
 class WorkshopController extends Controller
 {
@@ -35,7 +36,7 @@ class WorkshopController extends Controller
         return $this->service->store($request);
     }
 
-    public function update($id, WorkshopRequest $request)
+    public function update($id, WorkshopEditRequest $request)
     {
         return $this->service->update($id, $request);
     }

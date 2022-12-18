@@ -30,6 +30,7 @@ class WorkshopRequest extends FormRequest
     {
        return [
             'title.required'                => 'judul harus diisi',
+            'title.max'                     => 'judul maximal 200 character',
             'description.required'          => 'description harus diisi',
             'destination.required'          => 'destination harus diisi',
             'image.required'                => 'gambar harus diisi',

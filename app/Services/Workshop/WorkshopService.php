@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Workshop\WorkshopRequest;
+use App\Http\Requests\Workshop\WorkshopEditRequest;
 
 class WorkshopService
 {
@@ -153,38 +154,29 @@ class WorkshopService
             $topics   = Topic::select('id', 'name')->get();
             $links    = Link::select('id', 'link')->get();
 
-            $creator  = $workshop->users()->wherePivot('role', 'speaker')->first();
+            $creator   = $workshop->users()->wherePivot('role', 'speaker')->first();
+            $audiences = $workshop->users()->wherePivot('role', 'audience')->paginate(5);
+
+            // dd($audiences);
 
             $this->calculate_visited($workshop, true);
             
-            return view('Workshops.detail', compact('workshop', 'creator', 'topics', 'links'));
+            return view('Workshops.detail', compact('workshop', 'creator', 'topics', 'links', 'audiences'));
         } catch (Exception $e) {
             return $this->error('Terjadi Kesalahan');
         }
     }
 
-    public function update($id, WorkshopRequest $request)
+    public function update($id, WorkshopEditRequest $request)
     {
         try {
 
             $workshop = Workshop::findOrFail($id);
 
-            // if($request->hasFile()){
-
-            $imageFile = $request->file('image');
-            $image = $imageFile->getClientOriginalName();
-
-            $documentFile = $request->file('document');
-            $document = $documentFile->getClientOriginalName();
-
-            // }
-            $workshop = Workshop::update([
+            $workshop->update([
                 'title'         => $request->title,
                 'description'   => $request->description,
                 'destination'   => $request->destination,
-                'image'         => $image,
-                'document'      => $document,
-                'topic_id'      => $request->topic_id,
             ]);
 
             Alert::success('Success', 'Workshop berhasil diupdate');

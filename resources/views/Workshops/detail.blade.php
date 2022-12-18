@@ -1,5 +1,13 @@
 @extends('index')
 
+@section('head')
+  <style>
+    .error {
+      color: red
+    }
+  </style>
+@endsection
+
 @section('body')
     @include('partials.preloader')
 
@@ -90,7 +98,8 @@
             </div>
         </div>
     </div>
-    <div class="popupContainerLarge" id="audience" style="display:none;">
+
+  <div class="popupContainerLarge" id="audience" style="display:none;">
       <div class="row popupHeaderlarge">
         <div class="col">
           <h5>Nama Peserta Terdaftar</h5>
@@ -103,44 +112,23 @@
         </div>
       </div>
       <section class="popupBodyLarge">
-        <div class="row">
-          <div class="col">
-            <p class="fw-normal">Muhammad Asyroful Munna</p>
-          </div>
-          <div class="col">
-            <p class="fw-normal">203140914111053</p>
-          </div>
-          <div class="col">
-            <p class="fw-normal">Pegawai</p>
-          </div>
-          <hr class="my-1">
-        </div>
-        <div class="row">
-          <div class="col">
-            <p class="fw-normal">Muhammad Asyroful Munna</p>
-          </div>
-          <div class="col">
-            <p class="fw-normal">203140914111053</p>
-          </div>
-          <div class="col">
-            <p class="fw-normal">Pegawai</p>
-          </div>
-          <hr class="my-1">
-        </div>
-        <div class="filter">
-          <div class="d-flex justify-content-center">
-            <div class="pagination pb-3">
-              <a href="#">&laquo;</a>
-              <a href="#">1</a>
-              <a href="#" class="active">2</a>
-              <p>...</p>
-              <a href="#">9</a>
-              <a href="#">10</a>
-              <a href="#">&raquo;</a>
+        @foreach ($audiences as $audience)
+          <div class="row">
+            <div class="col">
+              <p class="fw-normal">{{ $audience->fullname }}</p>
             </div>
+            <div class="col">
+              <p class="fw-normal">{{ $audience->new_NIP }}</p>
+            </div>
+            <div class="col">
+              <p class="fw-normal">{{ $audience->unit }}</p>
+            </div>
+            <hr class="my-1">
           </div>
-          <button onclick="document.getElementById('audience').style.display='none'">Kembali</button>
-        </div>
+        @endforeach
+        <div class="d-flex justify-content-center" style="background-color: white">
+          {!! $audiences->links() !!}
+      </div>
       </section>
   </div>
 
@@ -148,20 +136,34 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content p-4">
             <div class="popupHeaderReg">
-              <span class="header_title">WORKSHOP DETAIL</span>
+              <span class="header_title">EDIT WORKSHOP</span>
               <hr>
             </div>
-            <div class="modal-body popupBody">
-              Judul
-              <input class="mb-2" type="text">
-              Deskripsi
-              <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
-              Tujuan
-              <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
-              <hr>
-              <button class="btn-primary" type="submit">Selesaikan Aksi</button>
-              <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
-            </div>
+            <form method="post" id="formEditWorkshop">
+              @csrf
+              @method('PUT')
+
+              <div class="modal-body popupBody" style="color: black">
+                Judul
+                <input class="mb-2" type="text" value="{{ old('title') ?? $workshop->title }}" name="title">
+                @error('title')
+                    <div class="error">*{{ $message }}</div>
+                @enderror
+                Deskripsi
+                <textarea class="mb-2" id="" cols="30" rows="10" style="resize: none; height: 5%" name="description">{{ old('description') ?? $workshop->description }}</textarea>
+                @error('description')
+                    <div class="error">*{{ $message }}</div>
+                @enderror
+                Tujuan
+                <textarea class="mb-2" id="" cols="30" rows="10" style="resize: none; height: 5%" name="destination">{{ old('destination') ?? $workshop->destination }}</textarea>
+                @error('destination')
+                    <div class="error">*{{ $message }}</div>
+                @enderror
+                <hr>
+                <button class="btn-primary" type="submit">Selesaikan Aksi</button>
+                <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
+              </div>
+            </form>
           </div>
       </div>
   </div>
@@ -205,4 +207,15 @@
       </section>
     </div>
 
+@endsection
+
+@section('scripts')
+@if (count($errors) > 0)
+  <script type="text/javascript">
+      $( document ).ready(function() {
+          $('#editWorkshop').modal('show');
+          document.getElementById('formEditWorkshop').action = `/workshop/${<?= $workshop->id ?>}`;
+       });
+  </script>
+@endif
 @endsection
