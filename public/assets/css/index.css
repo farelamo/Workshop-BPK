@@ -88,7 +88,7 @@ figcaption {
     border: 0;
     outline: 0;
 }
-
+/*
 button {
     display: inline-block !important;
     padding: 10px 20px !important;
@@ -99,15 +99,24 @@ button {
     font-weight: 500 !important;
     letter-spacing: 0.3px !important;
     transition: all .5s;
-  }
+  } */
   .btn-primary {
+    display: inline-block !important;
+    padding: 10px 20px !important;
+    text-transform: capitalize;
+    font-size: 15px;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    transition: all .5s;
     background-color: rgba(77, 64, 118, 1);
     color: #fff;
   }
   .btn-primary:hover {
     background-color: #fff;
     border: 1px solid rgba(77, 64, 118, 1);
-    color: black;
+    color: rgba(77, 64, 118, 1);
   }
 
 /* clear fix */
