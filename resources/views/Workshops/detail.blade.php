@@ -84,122 +84,125 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="popupContainerLarge" id="audience" style="display:none;">
-                            <div class="row popupHeaderlarge">
-                              <div class="col">
-                                <h5>Nama Peserta Terdaftar</h5>
-                              </div>
-                              <div class="col">
-                                <h5>NIP</h5>
-                              </div>
-                              <div class="col">
-                                <h5>Satun Kerja</h5>
-                              </div>
-                            </div>
-                            <section class="popupBodyLarge">
-                              <div class="row">
-                                <div class="col">
-                                  <p class="fw-normal">Muhammad Asyroful Munna</p>
-                                </div>
-                                <div class="col">
-                                  <p class="fw-normal">203140914111053</p>
-                                </div>
-                                <div class="col">
-                                  <p class="fw-normal">Pegawai</p>
-                                </div>
-                                <hr class="my-1">
-                              </div>
-                              <div class="row">
-                                <div class="col">
-                                  <p class="fw-normal">Muhammad Asyroful Munna</p>
-                                </div>
-                                <div class="col">
-                                  <p class="fw-normal">203140914111053</p>
-                                </div>
-                                <div class="col">
-                                  <p class="fw-normal">Pegawai</p>
-                                </div>
-                                <hr class="my-1">
-                              </div>
-                              <div class="filter">
-                                <div class="d-flex justify-content-center">
-                                  <div class="pagination pb-3">
-                                    <a href="#">&laquo;</a>
-                                    <a href="#">1</a>
-                                    <a href="#" class="active">2</a>
-                                    <p>...</p>
-                                    <a href="#">9</a>
-                                    <a href="#">10</a>
-                                    <a href="#">&raquo;</a>
-                                  </div>
-                                </div>
-                                <button onclick="document.getElementById('audience').style.display='none'">Kembali</button>
-                              </div>
-                            </section>
-                        </div>
-                        <div class="modal fade" id="editWorkshop" tabindex="-1" role="dialog" aria-labelledby="editWorkshop" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content p-4">
-                                  <div class="popupHeaderReg">
-                                    <span class="header_title">WORKSHOP DETAIL</span>
-                                    <hr>
-                                  </div>
-                                  <div class="modal-body popupBody">
-                                    Judul
-                                    <input class="mb-2" type="text">
-                                    Deskripsi
-                                    <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
-                                    Tujuan
-                                    <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
-                                    <hr>
-                                    <button class="btn-primary" type="submit">Selesaikan Aksi</button>
-                                    <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="modal" class="popupContainerReg p-3" style="display:none;">
-                            <div class="popupHeaderReg">
-                              <span class="header_title">Form Registrasi</span>
-                              <br>
-                              <span class="header_title">Kegiatan Workshop</span>
-                            </div>
 
-                            <section class="popupBodyReg">
-                              <hr>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  <p>Mengikuti workshop secara penuh, profesional, taat aturan, dan beretika.</p>
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  <p>Berkontribusi dengan baik tanpa ada hambatan sedikitpun.</p>
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  <p>Memberikan feedback yang baik terhadap penyelenggara maupun pembicara.</p>
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                  <p>Tidak meninggalkan kegiatan workshop selama kegiatan berlangsung.</p>
-                                </label>
-                              </div>
-                              <hr>
-                              <button class="btn-primary" type="submit">Konfirmasi</button>
-                              <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
-                            </section>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="popupContainerLarge" id="audience" style="display:none;">
+      <div class="row popupHeaderlarge">
+        <div class="col">
+          <h5>Nama Peserta Terdaftar</h5>
+        </div>
+        <div class="col">
+          <h5>NIP</h5>
+        </div>
+        <div class="col">
+          <h5>Satun Kerja</h5>
+        </div>
+      </div>
+      <section class="popupBodyLarge">
+        <div class="row">
+          <div class="col">
+            <p class="fw-normal">Muhammad Asyroful Munna</p>
+          </div>
+          <div class="col">
+            <p class="fw-normal">203140914111053</p>
+          </div>
+          <div class="col">
+            <p class="fw-normal">Pegawai</p>
+          </div>
+          <hr class="my-1">
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="fw-normal">Muhammad Asyroful Munna</p>
+          </div>
+          <div class="col">
+            <p class="fw-normal">203140914111053</p>
+          </div>
+          <div class="col">
+            <p class="fw-normal">Pegawai</p>
+          </div>
+          <hr class="my-1">
+        </div>
+        <div class="filter">
+          <div class="d-flex justify-content-center">
+            <div class="pagination pb-3">
+              <a href="#">&laquo;</a>
+              <a href="#">1</a>
+              <a href="#" class="active">2</a>
+              <p>...</p>
+              <a href="#">9</a>
+              <a href="#">10</a>
+              <a href="#">&raquo;</a>
+            </div>
+          </div>
+          <button onclick="document.getElementById('audience').style.display='none'">Kembali</button>
+        </div>
+      </section>
+  </div>
+
+  <div class="modal fade" id="editWorkshop" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content p-4">
+            <div class="popupHeaderReg">
+              <span class="header_title">WORKSHOP DETAIL</span>
+              <hr>
+            </div>
+            <div class="modal-body popupBody">
+              Judul
+              <input class="mb-2" type="text">
+              Deskripsi
+              <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
+              Tujuan
+              <textarea class="mb-2" name="" id="" cols="30" rows="10"></textarea>
+              <hr>
+              <button class="btn-primary" type="submit">Selesaikan Aksi</button>
+              <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="modal" class="popupContainerReg p-3" style="display:none;">
+      <div class="popupHeaderReg">
+        <span class="header_title">Form Registrasi</span>
+        <br>
+        <span class="header_title">Kegiatan Workshop</span>
+      </div>
+
+      <section class="popupBodyReg">
+        <hr>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            <p>Mengikuti workshop secara penuh, profesional, taat aturan, dan beretika.</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            <p>Berkontribusi dengan baik tanpa ada hambatan sedikitpun.</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            <p>Memberikan feedback yang baik terhadap penyelenggara maupun pembicara.</p>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            <p>Tidak meninggalkan kegiatan workshop selama kegiatan berlangsung.</p>
+          </label>
+        </div>
+        <hr>
+        <button class="btn-primary" type="submit">Konfirmasi</button>
+        <p class="pt-2" style="text-align: center; color: rgb(153, 151, 151); font-weight: 300;">*pastikan aksi yang anda lakukan baik dan benar</p>
+      </section>
     </div>
 
 @endsection
