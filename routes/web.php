@@ -29,17 +29,17 @@ Route::post('workshop/{id}/speaker', 'Evaluations\SpeakerEvaluationController@st
 Route::get('workshop/{id}/speaker/view', 'Evaluations\SpeakerEvaluationController@view');
 Route::get('workshop/{id}/speaker/download', 'Evaluations\SpeakerEvaluationController@download');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     
     /*** Topic ***/
-    // Route::get('topic', 'Workshop\TopicController@index');
-    // Route::post('topic', 'Workshop\TopicController@store');
-    // Route::update('topic/{id}', 'Workshop\TopicController@update');
-    // Route::delete('topic/{id}', 'Workshop\TopicController@destroy');
+    Route::get('topic', 'Workshop\TopicController@index');
+    Route::post('topic', 'Workshop\TopicController@store');
+    Route::put('topic/{id}', 'Workshop\TopicController@update');
+    Route::delete('topic/{id}', 'Workshop\TopicController@destroy');
 
     /*** Link ***/ 
-    // Route::get('link', 'Workshop\LinkController@index');
-    // Route::post('link', 'Workshop\LinkController@store');
-    // Route::update('link/{id}', 'Workshop\LinkController@update');
-    // Route::delete('link/{id}', 'Workshop\LinkController@destroy');
+    Route::get('link', 'Workshop\LinkController@index');
+    Route::post('link', 'Workshop\LinkController@store');
+    Route::put('link/{id}', 'Workshop\LinkController@update');
+    Route::delete('link/{id}', 'Workshop\LinkController@destroy');
 });

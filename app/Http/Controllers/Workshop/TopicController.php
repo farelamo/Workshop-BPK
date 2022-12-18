@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Services\Workshop\TopicService;
 use App\Http\Requests\Workshop\TopicRequest;
+use App\Http\Requests\Workshop\TopicEditRequest;
 
 class TopicController extends Controller
 {
@@ -21,10 +22,10 @@ class TopicController extends Controller
 
     public function store(TopicRequest $request)
     {
-        return $this->service->store($id, $request);
+        return $this->service->store($request);
     }
 
-    public function update($id, TopicRequest $request)
+    public function update($id, TopicEditRequest $request)
     {
         return $this->service->update($id, $request);
     }

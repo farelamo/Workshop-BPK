@@ -128,7 +128,7 @@
         @endforeach
         <div class="d-flex justify-content-center" style="background-color: white">
           {!! $audiences->links() !!}
-      </div>
+        </div>
       </section>
   </div>
 

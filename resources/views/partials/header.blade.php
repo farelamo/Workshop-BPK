@@ -68,6 +68,18 @@
                                                     <span>Laporan sebagai Peserta</span>
                                                 </a>
                                             </li>
+                                            @if (Auth::user()->NIP == '240007449')
+                                                <li>
+                                                    <a href="/topic">
+                                                        <span>Edit Data Topic</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/link">
+                                                        <span>Edit Data Link</span>
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li>
                                                 <a href="/logout">
                                                     <span>Logout</span>
