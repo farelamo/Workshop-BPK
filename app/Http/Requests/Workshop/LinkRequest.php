@@ -14,13 +14,15 @@ class LinkRequest extends FormRequest
     public function rules()
     {
         return [
-            'link' => 'required'
+            'link' => 'required',
+            'sesi' => 'required'
         ];
     }
 
     public function meesages(){
         return [
-            'link.required' => 'Link harus diisi'
+            'link.required' => 'Link harus diisi',
+            'sesi.required' => 'Sesi harus diisi',
         ];
     }
 }

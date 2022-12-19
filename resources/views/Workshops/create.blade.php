@@ -105,7 +105,7 @@
                                                         <select name="link_id" style="color: #4D4076" autocomplete="on">
                                                             <option value="">-- Pilih Sesi --</option>
                                                             @foreach ($links as $link)
-                                                                @if ($link->id == 1)
+                                                                @if ($link->sesi == 1)
                                                                     @if (old('link_id') == $link->id)
                                                                         <option value="{{ $link->id }}" selected>09.00 - 12.00</option>
                                                                     @else

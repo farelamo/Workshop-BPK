@@ -136,7 +136,7 @@
                   <h4>JADWAL WORKSHOP</h4>
                   <div class="info">
                     <p>Tanggal : {{ $workshop->date }}</p>
-                    <p>Sesi    : {{ $workshop->link_id == 1 ? '09.00 - 12.00' : '15.00 - 17.00'}}</p>
+                    <p>Sesi    : {{ $workshop->Link->sesi == 1 ? '09.00 - 12.00' : '15.00 - 17.00'}}</p>
                     <p>Kreator : {{ $user['fullname'] }}</p>
                   </div>
                 </div>

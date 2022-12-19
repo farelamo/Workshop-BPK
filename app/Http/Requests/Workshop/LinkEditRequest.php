@@ -14,13 +14,15 @@ class LinkEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'linkEdit' => 'required'
+            'linkEdit' => 'required',
+            'sesiEdit' => 'required'
         ];
     }
 
     public function meesages(){
         return [
-            'linkEdit.required' => 'Link harus diisi'
+            'linkEdit.required' => 'Link harus diisi',
+            'sesiEdit.required' => 'Sesi harus diisi',
         ];
     }
 }

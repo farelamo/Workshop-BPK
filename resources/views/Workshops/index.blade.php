@@ -46,7 +46,7 @@
                                         <circle cx="8.5" cy="8.5" r="7.5" stroke="#5D5D5D"
                                             stroke-width="2" />
                                     </svg>
-                                    @if ( $workshop->link_id == 1)
+                                    @if ( $workshop->Link->sesi == 1)
                                         09.00 - 12.00
                                     @else
                                         15.00 - 17.00

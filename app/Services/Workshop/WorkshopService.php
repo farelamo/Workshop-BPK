@@ -84,7 +84,7 @@ class WorkshopService
         try {
 
             $topics     = Topic::select('id', 'name')->get();
-            $links      = Link::select('id', 'link')->get();
+            $links      = Link::select('id', 'link', 'sesi')->get();
             $targets    = TargetAudience::select('id', 'name')->get();
             $checkDate  = $this->dateBooked();
             

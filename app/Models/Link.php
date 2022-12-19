@@ -9,7 +9,7 @@ class Link extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['link'];
+    protected $fillable = ['link', 'sesi'];
 
     public function workshops()
     {
