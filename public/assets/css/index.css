@@ -593,23 +593,25 @@ header
 
 #dropdown li:hover ul {
     left: auto;
-    right: 0;
-    margin-right: -10px;
+    right: 20px;
 }
 
 #dropdown li:hover a {
-    background: #D5B1F4;
+    background: #fff;
     text-decoration: underline;
 }
 
 #dropdown li:hover ul a {
     /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
     text-decoration: none;
+    color: rgba(77, 64, 118, 1) !important;
+    font-weight: 500 !important;
 }
 
 #dropdown li:hover ul li a:hover {
     /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-    background: white;
+    background: #D5B1F4;
+    color: #fff !important;
 }
 
 .header-area .main-nav .nav li:last-child a.active {
