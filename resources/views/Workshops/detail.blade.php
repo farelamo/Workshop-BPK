@@ -80,15 +80,15 @@
                         </div>
                         <div class="col-lg-8 ps-4 pe-5">
                             <h4>{{ $workshop->title }}</h4>
-                            <p><span>Workshop Description</span></p>
+                            <p><span>Deskripsi Workshop</span></p>
                             <p>{{ $workshop->description }}</p>
                             <hr>
-                            <p><span>Workshop Destination</span></p>
+                            <p><span>Tujuan Workshop</span></p>
                             <p>{{ $workshop->destination }}</p>
-                            <div class="d-flex flex-row-reverse">
+                            <div class="d-flex flex-row-reverse mt-3">
                                 <form action="/workshop/{{ $workshop->id }}/join" method="post" style="background-color: transparent; border: 0">
                                     @csrf @method('put')
-                                    <button class="btn-primary" id="modal_trigger">Daftar</button>
+                                    <button class="btn-primary" id="modal_trigger" style="width:300px;">Daftar</button>
                                 </form>
                             </div>
                         </div>

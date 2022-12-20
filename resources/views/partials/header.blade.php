@@ -71,7 +71,7 @@
                                             @if (Auth::user()->NIP == '240007449')
                                                 <li>
                                                     <a href="/topic">
-                                                        <span>Edit Data Topic</span>
+                                                        <span>Edit Data Topik</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -82,7 +82,7 @@
                                             @endif
                                             <li>
                                                 <a href="/logout">
-                                                    <span>Logout</span>
+                                                    <span>Keluar</span>
                                                 </a>
                                             </li>
                                         </ul>

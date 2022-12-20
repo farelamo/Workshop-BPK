@@ -1,13 +1,13 @@
 <div class="filter mb-3">
     <div class="row">
         <div class="col-lg-5">
-            <p>What are you looking for?</p>
+            <p>Judul Kegiatan</p>
         </div>
         <div class="col">
-            <p>Category</p>
+            <p>Kategori</p>
         </div>
         <div class="col">
-            <p>Schedule</p>
+            <p>Jadwal</p>
         </div>
         <div class="col">
             <p> </p>
@@ -17,13 +17,13 @@
         <form action="/workshops/filter" method="get" class="border-0">
             <div class="col-lg-5">
                 <fieldset>
-                    <input name="title" placeholder="Search for workshop name" autocomplete="on" value="{{ old('title') }}">
+                    <input name="title" placeholder="Cari Berdasarkan Judul Workshop" autocomplete="on" value="{{ old('title') }}">
                 </fieldset>
             </div>
             <div class="col ps-2">
                 <fieldset>
-                    <select name="topic_id" autocomplete="on" class="text-center">
-                        <option value="">-- Select Category --</option>
+                    <select name="topic_id" autocomplete="on">
+                        <option value="">Pilih Kategori</option>
                         @foreach ($topics as $topic)
                             @if (old('topic_id') == $topic->id)
                                 <option value="{{ $topic->id }}" selected>{{ $topic->name }}</option>
@@ -36,8 +36,8 @@
             </div>
             <div class="col ps-2">
                 <fieldset>
-                    <select name="link_id" class="text-center" autocomplete="on">
-                        <option value="">-- Select Schedule --</option>
+                    <select name="link_id" autocomplete="on">
+                        <option value="">Pilih Jadwal</option>
                         @foreach ($links as $link)
                             @if($link->id == 1)
                                 @if (old('link_id') == $link->id)
@@ -57,7 +57,7 @@
                 </fieldset>
             </div>
             <div class="col ps-2">
-                <button type="submit">Search</button>
+                <button type="submit">Cari Kegiatan</button>
             </div>
         </form>
     </div>
