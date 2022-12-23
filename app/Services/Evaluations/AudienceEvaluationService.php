@@ -2,11 +2,13 @@
 
 namespace App\Services\Evaluations;
 
+use PDF;
 use Alert;
 use Session;
 use Exception;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
+use App\Traits\DownloadImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Evaluations\AudienceRequest;
@@ -14,6 +16,8 @@ use App\Http\Requests\Evaluations\AudienceEvaluationRequest;
 
 class AudienceEvaluationService
 {
+    use DownloadImage;
+
     public function filter($title, $sortTitle, $sortSchedule)
     {
         $data = Auth::user()->audience_evaluations()
@@ -85,6 +89,19 @@ class AudienceEvaluationService
                                     ->wherePivot('workshop_id', $id)
                                     ->first();
         return view('Workshops.Certificate.AudienceCertificate', compact('data'));
+    }
+
+    public function download($id)
+    {
+        $data = Auth::user()->audience_evaluations()
+            ->wherePivot('workshop_id', $id)
+            ->first();
+
+        $background = $this->base_image('assets/certificate/background-sertif.png');
+        $pdf = PDF::loadview('Workshops.Download.AudienceCertificate', compact('data', 'background'));
+        $pdf->setPaper('F4', 'landscape');
+        $pdf->render();
+        return $pdf->download('Sertikat-Workshop-Badiklat-BPK.pdf');
     }
 }
 

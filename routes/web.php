@@ -21,6 +21,7 @@ Route::get('workshop/evaluation/audience', 'Evaluations\AudienceEvaluationContro
 Route::get('workshop/evaluation/audience/filter', 'Evaluations\AudienceEvaluationController@index');
 Route::post('workshop/{id}/audience', 'Evaluations\AudienceEvaluationController@store');
 Route::get('workshop/{id}/audience/view', 'Evaluations\AudienceEvaluationController@view');
+Route::get('workshop/{id}/audience/download', 'Evaluations\AudienceEvaluationController@download');
 
 /*** Speaker Evaluation ***/
 Route::get('workshop/evaluation/speaker', 'Evaluations\SpeakerEvaluationController@index');
