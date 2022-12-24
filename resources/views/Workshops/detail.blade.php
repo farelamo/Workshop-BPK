@@ -108,7 +108,7 @@
           <h5>NIP</h5>
         </div>
         <div class="col">
-          <h5>Satun Kerja</h5>
+          <h5>Satuan Kerja</h5>
         </div>
       </div>
       <section class="popupBodyLarge">
