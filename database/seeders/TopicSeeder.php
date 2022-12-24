@@ -9,7 +9,7 @@ class TopicSeeder extends Seeder
 {
     public function run()
     {
-        $names = ['Pemeriksa', 'Manajemen Pemeriksa', 'Kelembagaan Pemeriksa'];
+        $names = ['Pemeriksa', 'Manajemen', 'Kelembagaan Pemeriksa'];
         foreach ($names as $name) {
             Topic::create([
                 'name' => $name

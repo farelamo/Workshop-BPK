@@ -58,9 +58,6 @@
             <div class="icon"></div>
             <h4>PESERTA</h4>
             <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and fashion axe.</p>
-            <div class="text-button">
-              <a href="#">Lihat detail <i class="fa fa-arrow-right"></i></a>
-            </div>
           </div>
         </div>
         <div class="col-lg-6">
@@ -68,9 +65,6 @@
             <div class="icon"></div>
             <h4>PEMBICARA</h4>
             <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and fashion axe.</p>
-            <div class="text-button">
-              <a href="#">Lihat Detail <i class="fa fa-arrow-right"></i></a>
-            </div>
           </div>
         </div>
       </div>

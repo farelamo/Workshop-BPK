@@ -25,11 +25,12 @@ class LinkService
                 return redirect()->back();
             }
 
-            if($check->first()->sesi == $request->sesi) {
-                Alert::error('Maaf', 'Sesi sudah dipakai');
-                return redirect()->back();
+            if(count($check) > 0){
+                if($check->first()->sesi == $request->sesi) {
+                    Alert::error('Maaf', 'Sesi sudah dipakai');
+                    return redirect()->back();
+                }
             }
-
             Link::create($request->all());
 
             Alert::success('Success', 'Link berhasil ditambahkan');
