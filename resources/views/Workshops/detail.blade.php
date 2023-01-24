@@ -67,7 +67,7 @@
                             <p><span>Kreator Workshop</span></p>
                             <p>{{ $creator->fullname }}</p>
                             <p><span>Topik</span></p>
-                            <p>{{ $workshop->topic->name }}</p>
+                            <p>{{ $workshop->topic_id }}</p>
                             <p><span>Jumlah Peserta</span></p>
                             <p>{{ $workshop->total_audience }} Peserta</p>
                             <div class="upper mt-1">

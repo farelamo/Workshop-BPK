@@ -108,6 +108,11 @@ class WorkshopService
             }
         }
 
+        $topic = Topic::where('id', $request->topic_id)->first();
+            if (!$topic){
+                return $this->error('Topik belum tersedia');
+            }
+
         try {
 
             $imageFile      = $request->file('image');
@@ -127,7 +132,7 @@ class WorkshopService
                 'document' => $document,
                 'cancelled' => 'no',
                 'link_id' => $request->link_id,
-                'topic_id' => $request->topic_id,
+                'topic_id' => $topic->name,
                 'target_audience_id' => $request->target_audience_id,
             ]);
             $workshop->users()->attach(Auth::user()->id, ['role' => 'speaker']);
@@ -141,9 +146,9 @@ class WorkshopService
 
             Alert::success('Success', 'Workshop berhasil dibuat');
             return redirect('/workshop/' . $workshop->id);
-        } catch (Exception $e) {
-            return $this->error('Terjadi Kesalahan');
-        }
+         } catch (Exception $e) {
+             return $this->error('Terjadi Kesalahan');
+         }
     }
 
     public function show($id)

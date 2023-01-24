@@ -18,7 +18,7 @@ class CreateWorkshopsTable extends Migration
             $table->date('date');
             $table->enum('cancelled', ['yes', 'no']);
             $table->foreignId('link_id')->constrained();
-            $table->foreignId('topic_id')->constrained();
+            $table->text('topic_id');
             $table->integer('total_visited')->unsigned()->nullable()->default(0);
             $table->integer('total_audience')->unsigned()->nullable()->default(0);
             $table->timestamps();
