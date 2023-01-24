@@ -122,9 +122,9 @@
                                 <option value="1">09.00 - 12.00</option>
                             @endif
                             @if (old('sesi') == 2)
-                                <option value="2" selected>15.00 - 17.00</option>
+                                <option value="2" selected>13.00 - 15.00</option>
                             @else
-                                <option value="2">15.00 - 17.00</option>
+                                <option value="2">13.00 - 15.00</option>
                             @endif
                         </select>
                         @error('sesi')
