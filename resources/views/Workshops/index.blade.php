@@ -49,7 +49,7 @@
                                     @if ( $workshop->Link->sesi == 1)
                                         09.00 - 12.00
                                     @else
-                                        15.00 - 17.00
+                                        13.00 - 15.00
                                     @endif
                                 </p>
                                 <p class="fw-bold text-dark text-opacity-75">

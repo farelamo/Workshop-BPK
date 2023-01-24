@@ -31,7 +31,7 @@
                                 @if ($workshop->Link->sesi == 1)
                                     <span>09.00 - 12.00</span>
                                 @else
-                                    <span>15.00 - 17.00</span>
+                                    <span>13.00 - 15.00</span>
                                 @endif
                             </p>
                             <p>

@@ -113,9 +113,9 @@
                                                                     @endif
                                                                 @else
                                                                     @if (old('link_id') == $link->id)
-                                                                        <option value="{{ $link->id }}" selected>15.00 - 17.00</option>
+                                                                        <option value="{{ $link->id }}" selected>13.00 - 15.00</option>
                                                                     @else
-                                                                        <option value="{{ $link->id }}">15.00 - 17.00</option>
+                                                                        <option value="{{ $link->id }}">13.00 - 15.00</option>
                                                                     @endif
                                                                 @endif
                                                             @endforeach
