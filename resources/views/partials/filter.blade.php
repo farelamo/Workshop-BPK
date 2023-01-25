@@ -25,10 +25,10 @@
                     <select name="topic_id" autocomplete="on">
                         <option value="">Pilih Kategori</option>
                         @foreach ($topics as $topic)
-                            @if (old('topic_id') == $topic->id)
-                                <option value="{{ $topic->id }}" selected>{{ $topic->name }}</option>
+                            @if (old('topic_id') == $topic->name)
+                                <option value="{{ $topic->name }}" selected>{{ $topic->name }}</option>
                             @else
-                                <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                                <option value="{{ $topic->name }}">{{ $topic->name }}</option>
                             @endif
                         @endforeach
                     </select>

@@ -59,7 +59,11 @@
                                 <div class="row mt-3">
                                     <div class="col-lg-8">
                                         <div class="item">
+                                        @if(\Carbon\Carbon::now()->gt($workshop->date))
+                                        <p class="fw-bold text-opacity-75" style="color: red">PENDAFTARAN TELAH DITUTUP</p>
+                                        @else
                                             <p class="fw-bold text-dark text-opacity-75">Kegiatan ini telah terdaftar sebanyak {{ $workshop->total_audience }} audience</p>
+                                        @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
