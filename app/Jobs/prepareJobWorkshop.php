@@ -21,7 +21,7 @@ class prepareJobWorkshop implements ShouldQueue
     public function handle()
     { 
         $dateNow      = strtotime(date("Y-m-d"));
-        $dateConvert  = date('Y-m-d', strtotime("+2 day", $dateNow));
+        $dateConvert  = date('Y-m-d', strtotime("+1 day", $dateNow));
         $workshops    = Workshop::where('date', $dateConvert)->get();
 
         if(count($workshops) > 0){
