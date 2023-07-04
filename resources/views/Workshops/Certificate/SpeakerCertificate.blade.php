@@ -23,6 +23,7 @@
 
         }
         h1 {
+            font-size: 30px;
             margin-top: 20px;
         }
 
@@ -94,6 +95,7 @@
             }
 
             h1 {
+                font-size: 26px;
                 margin-top: 20px;
             }
 
@@ -169,7 +171,7 @@
             }
 
             h1 {
-                font-size: 30px;
+                font-size: 23px;
                 margin-top: 15px;
             }
 
@@ -256,7 +258,7 @@
             }
 
             h1 {
-                font-size: 22px;
+                font-size: 17px;
                 margin-top: 15px;
             }
 
@@ -343,7 +345,7 @@
             }
 
             h1 {
-                font-size: 12px;
+                font-size: 7px;
                 margin-top: 7px;
             }
 

@@ -16,19 +16,19 @@
             <div class="col-lg-12">
                 <h2>Laporan sebagai Pembicara</h2>
                 <form action="/workshop/evaluation/speaker/filter" method="get" style="background-color: transparent; border: 0">
-                    
+
                     <div class="upper my-1 w-100 d-flex justify-content-between">
                         <div>
                             <button class="me-1" value="{{ $search ? !is_null($search['sortTitle']) ? $search['sortTitle'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortTitle">
                                 Judul Workshop
-                                @if ($search ? !is_null($search['sortTitle']) ? $search['sortTitle'] == 'DESC' : 'DESC' : 'DESC') <i class="fa fa-arrow-up"></i> 
+                                @if ($search ? !is_null($search['sortTitle']) ? $search['sortTitle'] == 'DESC' : 'DESC' : 'DESC') <i class="fa fa-arrow-up"></i>
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
 
                             <button class="me-1" value="{{ $search ? !is_null( $search['sortSchedule']) ? $search['sortSchedule'] == 'DESC' ? 'ASC' : 'DESC' : 'ASC' : 'ASC'}}" name="sortSchedule">
                                 Jumlah Peserta
-                                @if ($search ? !is_null($search['sortSchedule']) ? $search['sortSchedule'] == 'DESC' : 'DESC' : '') <i class="fa fa-arrow-up"></i> 
+                                @if ($search ? !is_null($search['sortSchedule']) ? $search['sortSchedule'] == 'DESC' : 'DESC' : '') <i class="fa fa-arrow-up"></i>
                                 @else <i class="fa fa-arrow-down"></i>
                                 @endif
                             </button>
@@ -50,7 +50,7 @@
                             <p>Jumlah Peserta</p>
                         </div>
                         <div class="col">
-                            <p>Batal</p>
+                            <p>Status</p>
                         </div>
                         <div class="col">
                             <p>Evaluasi</p>
@@ -79,35 +79,21 @@
                             @endphp
 
                             @if ($evaluation->cancelled === 'yes')
-                                <div class="col evaluasi">
-                                    <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 6.5L6.625 12.125L16 0.875" stroke="#8B4BC4" stroke-width="2" />
-                                    </svg>
+                                <div class="col judul">
+                                    <p class="text-danger fw-bold">Dibatalkan</p>
                                 </div>
-                                <div class="col sertif">
-                                    <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                        <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                    </svg>
+                                <div class="col judul">
+                                    <p>-</p>
                                 </div>
-                                <div class="col sertif">
-                                    <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                        <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                    </svg>
+                                <div class="col judul">
+                                    <p>-</p>
                                 </div>
                             @else
                                 @if ($dateNow >= $dateEval)
+                                    {{-- Belum Isi Eval + Terlaksana --}}
                                     @if (!$evaluation->pivot->comfortable || !$evaluation->pivot->event_suggestion || !$evaluation->pivot->file)
-                                        <div class="col sertif">
-                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                            </svg>
+                                        <div class="col judul">
+                                            <p class="text-success fw-bold">Terlaksana</p>
                                         </div>
                                         <div class="col evaluasi">
                                             <a style="color:rgba(139, 75, 196, 1)" href="#" data-bs-toggle="modal"
@@ -117,26 +103,16 @@
                                                 </button>
                                             </a>
                                         </div>
-                                        <div class="col sertif">
-                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                            </svg>
+                                        <div class="col judul">
+                                            <p>-</p>
                                         </div>
+                                    {{-- Sudah Isi Eval + Terlaksana --}}
                                     @else
-                                        <div class="col sertif">
-                                            <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                            </svg>
+                                        <div class="col judul">
+                                            <p class="text-success fw-bold">Terlaksana</p>
                                         </div>
-                                        <div class="col evaluasi">
-                                            <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 6.5L6.625 12.125L16 0.875" stroke="#8B4BC4" stroke-width="2" />
-                                            </svg>
+                                        <div class="col judul">
+                                            <p>Sudah Evaluasi</p>
                                         </div>
                                         <div class="col sertif">
                                             <div class="green mb-1">
@@ -145,34 +121,23 @@
                                                 </a>
                                             </div>
                                             <div>
-                                                <a href="/workshop/{{ $evaluation->id }}/speaker/view">
+                                                <a href="/workshop/{{ $evaluation->id }}/speaker/view" target="_blank">
                                                     <button>Lihat</button>
                                                 </a>
                                             </div>
                                         </div>
                                     @endif
+                                {{-- Belum Isi Eval + Nunggu Hari H --}}
                                 @else
-                                    <div class="col sertif">
-                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                            <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                        </svg>
+                                    <div class="col judul">
+                                        <p class="fw-bold">Menunggu</p>
                                     </div>
-                                    <div class="col evaluasi">
-                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                            </svg>
-                                    </div>    
-                                    <div class="col sertif">
-                                        <svg width="45" height="45" viewBox="0 0 45 45" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16.875 28.1243L28.125 16.8743" stroke="#FF6359" stroke-width="2" />
-                                                <path d="M28.125 28.125L16.875 16.875" stroke="#FF6359" stroke-width="2" />
-                                            </svg>
-                                    </div>    
+                                    <div class="col judul">
+                                        <p>-</p>
+                                    </div>
+                                    <div class="col judul">
+                                        <p>-</p>
+                                    </div>
                                 @endif
                             @endif
                         </div>
